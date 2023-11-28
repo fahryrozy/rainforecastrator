@@ -9,8 +9,7 @@ import {RootStackParamList} from '@presentation/nav';
 import DatePicker from 'react-native-date-picker';
 import {useEffect, useState} from 'react';
 
-const Header = ({data, onSelectDate, date, open, onClickDate}) => {
-  console.log('date dari header => ', date + ' ' + open);
+const Header = ({loc, onSelectDate, date, open, onClickDate}) => {
   const lastWeek = new Date();
   lastWeek.setDate(lastWeek.getDate() - 7);
   const nextWeek = new Date();
@@ -25,12 +24,9 @@ const Header = ({data, onSelectDate, date, open, onClickDate}) => {
           style={[iconStyle.iconSmall]}
           source={require('../../../assets/icons/calendar.png')}
         />
-        <Text style={{}}>{`${moment(
-          data?.location?.localtime,
-          'YYYY-MM-DD H:m',
-        ).format('ll')}`}</Text>
+        <Text style={{}}>{`${moment(date).format('ll')}`}</Text>
       </TouchableOpacity>
-      {data && (
+      {loc && (
         <TouchableOpacity
           style={styles.locCard}
           onPress={() => navigation.navigate('Search')}>
@@ -41,10 +37,8 @@ const Header = ({data, onSelectDate, date, open, onClickDate}) => {
               style={{
                 textAlign: 'center',
                 height: 20,
-              }}>{`${
-              data.location.region == '' ? '' : data.location.region + ', '
-            } ${
-              data.location.country == '' ? '' : data.location.country + ''
+              }}>{`${loc.region == '' ? '' : loc.region + ','} ${
+              loc.country == '' ? '' : loc.country + ''
             }`}</Text>
           </View>
 
@@ -63,9 +57,7 @@ const Header = ({data, onSelectDate, date, open, onClickDate}) => {
         onConfirm={onSelectDate}
         open={open}
         date={date}
-        onCancel={() => {
-          setOpen(false);
-        }}
+        onCancel={onClickDate}
       />
     </View>
   );

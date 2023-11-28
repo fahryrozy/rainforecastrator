@@ -9,6 +9,7 @@ interface PayloadRequest {
   lang?: string;
   days?: number;
   date?: string;
+  hour?: number;
 }
 interface RequestConfig {
   baseURL: string;

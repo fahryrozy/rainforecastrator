@@ -15,37 +15,13 @@ interface ForecastProps {
   onDateChange: (newDate: Date) => void;
 }
 
-const ForecastOnDate = () => {
-  const {
-    forecastData,
-    open,
-    mydate,
-    setOpen,
-    setSelectedLocDate,
-    lastWeek,
-    nextWeek,
-  } = useViewModel();
+const ForecastOnDate = ({forecastData}) => {
   moment.locale('id');
-  console.log('forecast data => ', forecastData.location);
   return (
     <View style={styles.containerCurWeather}>
       {forecastData && (
         <View style={styles.curWeatherCard}>
           <View style={styles.info}>
-            <View style={styles.locCard}>
-              <TouchableOpacity
-                style={styles.dateCard}
-                onPress={() => setOpen(true)}>
-                <Image
-                  style={[iconStyle.iconSmall]}
-                  source={require('../../../assets/icons/calendar.png')}
-                />
-                <Text style={styles.locDate}>{`${moment(
-                  forecastData?.forecast.forecastday[0].date,
-                  'YYYY-MM-DD H:m',
-                ).format('LL')}`}</Text>
-              </TouchableOpacity>
-            </View>
             <View style={styles.tempCard}>
               <Text
                 ellipsizeMode="tail"
@@ -89,19 +65,6 @@ const ForecastOnDate = () => {
           </View>
         </View>
       )}
-
-      <DatePicker
-        mode="date"
-        maximumDate={nextWeek}
-        minimumDate={lastWeek}
-        modal
-        open={open}
-        date={mydate}
-        onConfirm={setSelectedLocDate}
-        onCancel={() => {
-          setOpen(false);
-        }}
-      />
     </View>
   );
 };

@@ -6,9 +6,13 @@ import Forecast from '@presentation/components/molecules/Forecast/Forecast';
 import ConditionCard from '@presentation/components/molecules/Condition/ConditionCard';
 import useViewModel from './Home.VM';
 import WeatherInfo from '@presentation/components/molecules/Info/WeatherInfo';
+import moment from 'moment';
+import WeatherInfoOnDate from '@presentation/components/molecules/Info/WeatherInfoOnDate';
 
 const Home = () => {
   const {
+    isToday,
+    weatherInfoDate,
     selectedLocation,
     weatherInfo,
     astronomy,
@@ -26,13 +30,21 @@ const Home = () => {
       {selectedLocation && weatherInfo && (
         <BaseLayout data={weatherInfo}>
           <Header
-            data={weatherInfo}
+            loc={selectedLocation}
             onSelectDate={setSelectedDate}
             date={date}
             open={open}
             onClickDate={onClickDate}
           />
-          <WeatherInfo data={weatherInfo} />
+          {isToday ? (
+            <WeatherInfoOnDate
+              data={weatherInfoDate}
+              condition={selectedCondition}
+            />
+          ) : (
+            <WeatherInfo data={weatherInfo} />
+          )}
+          {/* <WeatherInfo data={weatherInfo} /> */}
           <AstronomyCard data={astronomy} />
           <Forecast
             data={sortedForecasting}

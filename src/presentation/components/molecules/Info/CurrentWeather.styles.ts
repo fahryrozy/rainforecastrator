@@ -69,7 +69,6 @@ export const styles = StyleSheet.create({
   lastUpdDate: {
     flex: 1,
     textAlign: 'center',
-    fontStyle: 'italic',
     fontSize: scale(10),
     color: 'rgba(255, 255, 255, 1)',
     fontFamily: 'Poppins',

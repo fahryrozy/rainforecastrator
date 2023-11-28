@@ -15,13 +15,18 @@ import {
 } from '@domain/entities';
 import {GetAstronomyUsecase} from '@domain/useCases/getAstronomyUsecase';
 import {GetForecastUsecase} from '@domain/useCases/getForecastUsecase';
+import {GetHistoryUsecase} from '@domain/useCases/getHistoryUsecase';
 
 const HomeVM = () => {
-  const dispatch = useAppDispatch();
   const [date, setDate] = useState(new Date());
   const [weatherInfo, setWeatherInfo] = useState<{
     location: Location;
     current: Current;
+  }>();
+
+  const [weatherInfoDate, setWeatherInfoDate] = useState<{
+    location: Location;
+    forecast: Forecast;
   }>();
   const [astronomy, setAstronomy] = useState<{
     location: Location;
@@ -35,8 +40,11 @@ const HomeVM = () => {
   const [sortedForecasting, setSortedForecasting] = useState<Hour[]>([]);
   const [selectedCondition, setSelectedCondition] = useState<Hour>();
 
-  const [eventDate, setEventDate] = useState<string>();
+  const [eventDate, setEventDate] = useState<string>(
+    moment(date).format('YYYY-MM-DD'),
+  );
   const [open, setOpen] = useState(false);
+  const isToday = eventDate !== moment().format('YYYY-MM-DD');
   const lastWeek = new Date();
   lastWeek.setDate(lastWeek.getDate() - 7);
   const nextWeek = new Date();
@@ -60,6 +68,32 @@ const HomeVM = () => {
     return res;
   };
 
+  const getWeatherDate = async () => {
+    const resolve = container.resolve(GetHistoryUsecase);
+    const res = await resolve.execute(`id:${selectedLocation.id}`, eventDate);
+    // dispatch(storeHistoryForecast(res));
+    console.log('res history => ', res);
+    setWeatherInfoDate(res);
+
+    const currTime =
+      parseFloat(
+        moment(res.location.localtime, 'YYYY-MM-DD H:m').format('Hmm'),
+      ) - 60;
+    console.log('currtime -> ', currTime);
+    let sorted = [...res?.forecast?.forecastday[0]?.hour].sort((a, b) => {
+      const x =
+        currTime - parseFloat(moment(a.time, 'YYYY-MM-DD H:m').format('Hmm'));
+      const y =
+        currTime - parseFloat(moment(b.time, 'YYYY-MM-DD H:m').format('Hmm'));
+
+      if (x > 0 && y > 0) return y - x;
+      if (x < 0 && y < 0) return y - x;
+      else return x - y;
+    });
+    console.log('data on date => ', sorted[0]);
+    return res;
+  };
+
   const getAstro = async () => {
     const resolve = container.resolve(GetAstronomyUsecase);
     const res = await resolve.execute(`id:${selectedLocation.id}`, eventDate);
@@ -76,29 +110,25 @@ const HomeVM = () => {
     );
 
     setForecastHourly(res);
+
+    const currTime =
+      parseFloat(
+        moment(res.location.localtime, 'YYYY-MM-DD H:m').format('Hmm'),
+      ) - 30;
+    console.log('currtime -> ', currTime);
+    let sorted = [...res?.forecast?.forecastday[0]?.hour].sort((a, b) => {
+      const x =
+        currTime - parseFloat(moment(a.time, 'YYYY-MM-DD H:m').format('Hmm'));
+      const y =
+        currTime - parseFloat(moment(b.time, 'YYYY-MM-DD H:m').format('Hmm'));
+
+      if (x > 0 && y > 0) return y - x;
+      if (x < 0 && y < 0) return y - x;
+      else return x - y;
+    });
+    setSortedForecasting(sorted);
+    setSelectedCondition(sorted[0]);
     return res;
-  };
-
-  const sortedData = () => {
-    if (
-      forecastHourly?.forecast?.forecastday?.length > 0 &&
-      forecastHourly?.forecast?.forecastday[0]?.hour?.length > 0 &&
-      Object.keys(weatherInfo).length > 0
-    ) {
-      const currTime = Math.floor(weatherInfo.location.localtime_epoch - 1800);
-      let sorted = [...forecastHourly?.forecast?.forecastday[0]?.hour].sort(
-        (a, b) => {
-          const x = currTime - a.time_epoch;
-          const y = currTime - b.time_epoch;
-
-          if (x > 0 && y > 0) return y - x;
-          if (x < 0 && y < 0) return y - x;
-          else return x - y;
-        },
-      );
-      setSortedForecasting(sorted);
-      setSelectedCondition(sorted[0]);
-    }
   };
 
   const setCurrCondition = (item: Hour) => {
@@ -107,17 +137,15 @@ const HomeVM = () => {
 
   useEffect(() => {
     getWeather();
-    getAstro();
     getForecastHourly();
-    sortedData();
-  }, [selectedLocation, eventDate]);
-
-  useEffect(() => {
-    sortedData();
-  }, [forecastHourly]);
+    getWeatherDate();
+    getAstro();
+  }, [selectedLocation, eventDate, isToday]);
 
   return {
+    isToday,
     weatherInfo,
+    weatherInfoDate,
     astronomy,
     forecastHourly,
     sortedForecasting,
