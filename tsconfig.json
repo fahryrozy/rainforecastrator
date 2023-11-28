@@ -1,3 +1,25 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json"
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "types": ["reflect-metadata"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "isolatedModules": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@root/*": ["../*"],
+      "@core/*": ["core/*"],
+      "@store/*": ["core/config/store/*"],
+      "@data/*": ["data/*"],
+      "@di/*": ["di/*"],
+      "@domain/*": ["domain/*"],
+      "@presentation/*": ["presentation/*"],
+      "assets/*": ["presentation/assets/*"]
+    },
+    "allowSyntheticDefaultImports": true
+  }
 }

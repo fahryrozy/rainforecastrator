@@ -1,0 +1,80 @@
+import {scale} from '@core/style';
+import {StyleSheet} from 'react-native';
+
+export const styles = StyleSheet.create({
+  astroTitle: {
+    display: 'flex',
+    height: scale(45),
+    backgroundColor: '#222',
+    opacity: 0.6,
+    borderTopLeftRadius: scale(10),
+    borderTopRightRadius: scale(10),
+    marginVertical: scale(1),
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: scale(5),
+    paddingHorizontal: scale(15),
+  },
+
+  astroContent: {
+    height: scale(115),
+    backgroundColor: '#222',
+    opacity: 0.6,
+    borderBottomRadius: scale(10),
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomLeftRadius: scale(10),
+    borderBottomRightRadius: scale(10),
+    paddingHorizontal: scale(10),
+    paddingVertical: scale(15),
+  },
+  currentWeather: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
+  },
+  info: {flex: 1},
+  temp: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '90%',
+    textAlign: 'center',
+    color: 'rgba(255, 255, 255, 1)',
+    fontFamily: 'Poppins',
+  },
+  tempText: {
+    color: 'rgba(255, 255, 255, 1)',
+    fontFamily: 'Poppins',
+    fontSize: scale(75),
+  },
+  tempInfoText: {
+    textAlign: 'center',
+    color: 'rgba(255, 255, 255, 1)',
+    fontFamily: 'Poppins',
+    fontSize: scale(24),
+  },
+  loc: {
+    rowGap: scale(5),
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
+  label: {
+    textAlign: 'center',
+    color: 'rgba(255, 255, 255, 1)',
+    fontFamily: 'Poppins',
+    fontSize: scale(15),
+    fontWeight: '400',
+  },
+  value: {
+    textAlign: 'center',
+    color: 'rgba(255, 255, 255, 1)',
+    fontFamily: 'Poppins',
+    fontSize: scale(20),
+    fontWeight: '400',
+  },
+});

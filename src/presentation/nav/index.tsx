@@ -17,13 +17,15 @@ const CustomTransition = {
    Router
 ---------------------------
 */
-import Home from '../Home';
+import Home from '@presentation/screens/Home/Home';
+import Search from '@presentation/screens/Search/Search';
 
 const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" screenOptions={CustomTransition}>
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Search" component={Search} />
       </Stack.Navigator>
     </NavigationContainer>
   );
