@@ -22,6 +22,7 @@ const apiCall = async (config: RequestConfig) => {
     const response = await axios.request(config);
     return response.data;
   } catch (error) {
+    console.log('error => ', error);
     return {};
   }
 };
@@ -47,7 +48,7 @@ export const fetchAstronomy = (params: PayloadRequest) => {
 export const fetchForecast = (params: PayloadRequest) => {
   const options = {
     method: 'GET',
-    url: `forecast.json?key=${apiKey}&q=${params.cityName}&days=${params.days}&dt=${params.date}`,
+    url: `forecast.json?key=${apiKey}&q=${params.cityName}&days=1&dt=${params.date}`,
     baseURL: `${BASE_URL}`,
   };
   return apiCall(options);

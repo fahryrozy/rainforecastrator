@@ -24,8 +24,11 @@ export const SetLocationSlice = createSlice({
   name: 'SET_LOCATION_SLICE',
   initialState,
   reducers: {
-    saveLocationHistory: (state, action: PayloadAction<LocationState>) => {
-      state.locationList = action.payload.locationList;
+    saveSearchedLocation: (state, action: PayloadAction<LocationState>) => {
+      state.locationList = [
+        action.payload.selectedLocation,
+        ...state.locationList,
+      ];
     },
     setLocation: (state, action: PayloadAction<LocationState>) => {
       state.selectedLocation = action.payload.selectedLocation;
@@ -33,7 +36,7 @@ export const SetLocationSlice = createSlice({
   },
 });
 
-export const {saveLocationHistory, setLocation} = SetLocationSlice.actions;
+export const {saveSearchedLocation, setLocation} = SetLocationSlice.actions;
 
 export const locationStore = (state: RootState) => state.LocationReducer;
 

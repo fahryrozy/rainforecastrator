@@ -1,11 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
-import ForecastReducer from './slice/forecastSlice';
-import SelectHourReducer from './slice/selectHourlySlice';
-import CurrentWeatherReducer from './slice/currentWeatherSlice';
-import AstronomyReducer from './slice/astronomySlice';
 import LocationReducer from './slice/locationSlice';
-import SelectedDateReducer from './slice/dateSlice';
-import HistoryForecastReducer from './slice/historySlice';
 import {
   persistCombineReducers,
   persistStore,
@@ -24,13 +18,7 @@ const persistConfig = {
 };
 
 const persistedReducer = persistCombineReducers(persistConfig, {
-  ForecastReducer,
-  SelectHourReducer,
   LocationReducer,
-  CurrentWeatherReducer,
-  AstronomyReducer,
-  SelectedDateReducer,
-  HistoryForecastReducer,
 });
 
 export const store = configureStore({

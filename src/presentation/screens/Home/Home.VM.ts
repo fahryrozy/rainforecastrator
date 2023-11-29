@@ -1,29 +1,21 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {GetCurrentUsecase} from '@domain/useCases/getCurrentUsecase';
-import {useAppDispatch, useAppSelector} from '@core/config/store/hooks';
+import {useAppSelector} from '@core/config/store/hooks';
 import container from '@di/inversify.config';
 import {locationStore} from '@core/config/store/slice/locationSlice';
-
 import moment from 'moment';
-import {
-  Alerts,
-  Astronomy,
-  Current,
-  Forecast,
-  Hour,
-  Location,
-} from '@domain/entities';
+import {Astronomy, Current, Forecast, Hour, Location} from '@domain/entities';
 import {GetAstronomyUsecase} from '@domain/useCases/getAstronomyUsecase';
 import {GetForecastUsecase} from '@domain/useCases/getForecastUsecase';
 import {GetHistoryUsecase} from '@domain/useCases/getHistoryUsecase';
 
 const HomeVM = () => {
-  const [date, setDate] = useState(new Date());
+  const [refreshing, setRefreshing] = useState<boolean>(false);
+
   const [weatherInfo, setWeatherInfo] = useState<{
     location: Location;
     current: Current;
   }>();
-
   const [weatherInfoDate, setWeatherInfoDate] = useState<{
     location: Location;
     forecast: Forecast;
@@ -35,28 +27,29 @@ const HomeVM = () => {
   const [forecastHourly, setForecastHourly] = useState<{
     location: Location;
     forecast: Forecast;
-    alerts: Alerts;
   }>();
   const [sortedForecasting, setSortedForecasting] = useState<Hour[]>([]);
   const [selectedCondition, setSelectedCondition] = useState<Hour>();
 
+  const [date, setDate] = useState(new Date());
   const [eventDate, setEventDate] = useState<string>(
     moment(date).format('YYYY-MM-DD'),
   );
   const [open, setOpen] = useState(false);
-  const isToday = eventDate !== moment().format('YYYY-MM-DD');
+  const onClickDate = () => setOpen(!open);
+  const isToday = eventDate === moment().format('YYYY-MM-DD');
   const lastWeek = new Date();
   lastWeek.setDate(lastWeek.getDate() - 7);
   const nextWeek = new Date();
   nextWeek.setDate(nextWeek.getDate() + 7);
+
   const {selectedLocation} = useAppSelector(locationStore);
-
-  const onClickDate = () => setOpen(!open);
-
+  const setToday = () => {
+    setEventDate(moment().format('YYYY-MM-DD'));
+    setDate(new Date());
+  };
   const setSelectedDate = (indate: Date) => {
-    setOpen(false);
     setDate(indate);
-    console.log('date -> ', date);
     setEventDate(moment(indate).format('YYYY-MM-DD'));
     onClickDate();
   };
@@ -65,33 +58,13 @@ const HomeVM = () => {
     const resolve = container.resolve(GetCurrentUsecase);
     const res = await resolve.execute(`id:${selectedLocation.id}`);
     setWeatherInfo(res);
-    return res;
   };
 
   const getWeatherDate = async () => {
     const resolve = container.resolve(GetHistoryUsecase);
     const res = await resolve.execute(`id:${selectedLocation.id}`, eventDate);
-    // dispatch(storeHistoryForecast(res));
-    console.log('res history => ', res);
     setWeatherInfoDate(res);
-
-    const currTime =
-      parseFloat(
-        moment(res.location.localtime, 'YYYY-MM-DD H:m').format('Hmm'),
-      ) - 60;
-    console.log('currtime -> ', currTime);
-    let sorted = [...res?.forecast?.forecastday[0]?.hour].sort((a, b) => {
-      const x =
-        currTime - parseFloat(moment(a.time, 'YYYY-MM-DD H:m').format('Hmm'));
-      const y =
-        currTime - parseFloat(moment(b.time, 'YYYY-MM-DD H:m').format('Hmm'));
-
-      if (x > 0 && y > 0) return y - x;
-      if (x < 0 && y < 0) return y - x;
-      else return x - y;
-    });
-    console.log('data on date => ', sorted[0]);
-    return res;
+    setForecastHourly(res);
   };
 
   const getAstro = async () => {
@@ -108,46 +81,74 @@ const HomeVM = () => {
       1,
       eventDate,
     );
-
     setForecastHourly(res);
-
-    const currTime =
-      parseFloat(
-        moment(res.location.localtime, 'YYYY-MM-DD H:m').format('Hmm'),
-      ) - 30;
-    console.log('currtime -> ', currTime);
-    let sorted = [...res?.forecast?.forecastday[0]?.hour].sort((a, b) => {
-      const x =
-        currTime - parseFloat(moment(a.time, 'YYYY-MM-DD H:m').format('Hmm'));
-      const y =
-        currTime - parseFloat(moment(b.time, 'YYYY-MM-DD H:m').format('Hmm'));
-
-      if (x > 0 && y > 0) return y - x;
-      if (x < 0 && y < 0) return y - x;
-      else return x - y;
-    });
-    setSortedForecasting(sorted);
-    setSelectedCondition(sorted[0]);
     return res;
+  };
+
+  const sortTime = (data: {location: Location; forecast: Forecast}) => {
+    if (
+      data?.forecast?.forecastday?.length > 0 &&
+      data?.forecast?.forecastday[0]?.hour?.length > 0
+    ) {
+      const currTime =
+        parseFloat(
+          moment(data.location.localtime, 'YYYY-MM-DD H:m').format('Hmm'),
+        ) - 30;
+      let sorted = [...data?.forecast?.forecastday[0]?.hour].sort((a, b) => {
+        const x =
+          currTime - parseFloat(moment(a.time, 'YYYY-MM-DD H:m').format('Hmm'));
+        const y =
+          currTime - parseFloat(moment(b.time, 'YYYY-MM-DD H:m').format('Hmm'));
+        if (x > 0 && y > 0) return y - x;
+        if (x < 0 && y < 0) return y - x;
+        else return x - y;
+      });
+      setSortedForecasting(sorted);
+      setSelectedCondition(sorted[0]);
+    } else {
+      setSortedForecasting([]);
+      setSelectedCondition(undefined);
+    }
   };
 
   const setCurrCondition = (item: Hour) => {
     setSelectedCondition(item);
   };
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      getWeather();
+      getForecastHourly();
+      getWeatherDate();
+      getAstro();
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
   useEffect(() => {
-    getWeather();
-    getForecastHourly();
-    getWeatherDate();
+    if (isToday) {
+      getWeather();
+      getForecastHourly();
+    } else getWeatherDate();
     getAstro();
-  }, [selectedLocation, eventDate, isToday]);
+  }, [selectedLocation, eventDate]);
+
+  useEffect(() => {
+    if (forecastHourly) sortTime(forecastHourly);
+  }, [forecastHourly, weatherInfoDate]);
+
+  useEffect(() => {
+    setToday();
+  }, [selectedLocation]);
 
   return {
     isToday,
+    onRefresh,
+    refreshing,
     weatherInfo,
     weatherInfoDate,
     astronomy,
-    forecastHourly,
     sortedForecasting,
     selectedCondition,
     selectedLocation,

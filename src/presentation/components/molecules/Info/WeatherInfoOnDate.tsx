@@ -4,12 +4,24 @@ import moment from 'moment';
 import 'moment/locale/id';
 import {styles} from './CurrentWeather.styles';
 import Clock from 'react-live-clock';
+import {Forecast, Hour, Location} from '@domain/entities';
 
-const WeatherInfoOnDate = ({data, condition}) => {
-  moment.locale('id');
+type Props = {
+  data:
+    | {
+        location: Location;
+        forecast: Forecast;
+      }
+    | undefined;
+  condition: Hour | undefined;
+};
+
+const WeatherInfoOnDate: React.FC<Props> = ({data, condition}) => {
+  moment.locale('en');
+  console.log('cond => ', condition);
   return (
     <View style={styles.mainContainer}>
-      {data && (
+      {data && condition && (
         <View style={styles.weatherInfoCard}>
           <View style={styles.locCard}>
             <Text ellipsizeMode="tail" numberOfLines={1} style={styles.locText}>

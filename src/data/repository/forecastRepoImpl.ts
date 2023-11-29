@@ -16,8 +16,8 @@ export class ForecastRepoImpl implements ForecastRepo {
 
   async getForecast(
     qLocation: string,
-    days?: number,
-    date?: string,
+    days: number,
+    date: string,
   ): Promise<{
     location: LocationAPI;
     forecast: ForecastAPI;

@@ -1,10 +1,8 @@
-import {View, Text} from 'react-native';
-import React, {useState} from 'react';
-import {useAppDispatch, useAppSelector} from '@core/config/store/hooks';
+import {useState} from 'react';
+import {useAppDispatch} from '@core/config/store/hooks';
 import container from '@di/inversify.config';
 import {LocationUseCase} from '@domain/useCases/searchLocUseCase';
 import {LocationSearch} from '@domain/entities';
-import {SetSelectedDate} from '@core/config/store/slice/dateSlice';
 import {setLocation} from '@core/config/store/slice/locationSlice';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';

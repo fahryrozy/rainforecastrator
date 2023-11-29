@@ -7,7 +7,7 @@ import {Typhography} from '@core/style';
 
 type ItemProps = {hourly_forecast: Hour; onPress: any};
 
-const RenderedCard = ({hourly_forecast, onPress}: ItemProps) => (
+const RenderedCard: React.FC<ItemProps> = ({hourly_forecast, onPress}) => (
   <TouchableOpacity style={styles.renderedCard} onPress={onPress}>
     <Text>{`${hourly_forecast.temp_c}°`}</Text>
     <Image
@@ -18,14 +18,33 @@ const RenderedCard = ({hourly_forecast, onPress}: ItemProps) => (
   </TouchableOpacity>
 );
 
-const Forecast = ({data, date, setCurrCondition}) => {
+type Props = {
+  data: Array<Hour>;
+  date: string;
+  setCurrCondition: (item: Hour) => void;
+  isToday: boolean;
+};
+
+const Forecast: React.FC<Props> = ({data, date, setCurrCondition, isToday}) => {
   moment.locale('en');
   return (
     <View style={styles.forecastCard}>
       <View style={styles.title}>
-        {data && (
+        {isToday ? (
           <Text style={Typhography.headerDefault()}>
-            {moment(date).format('L')}'s forecast
+            Today's hourly forecast
+          </Text>
+        ) : (
+          <Text style={Typhography.headerDefault()}>
+            {moment(date).calendar({
+              sameDay: '[Today]',
+              nextDay: '[Tomorrow]',
+              nextWeek: 'dddd',
+              lastDay: '[Yesterday]',
+              lastWeek: '[Last] dddd',
+              sameElse: 'DD/MM/YYYY',
+            })}
+            's hourly forecast
           </Text>
         )}
       </View>

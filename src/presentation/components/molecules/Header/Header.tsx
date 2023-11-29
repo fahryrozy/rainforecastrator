@@ -7,14 +7,30 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '@presentation/nav';
 import DatePicker from 'react-native-date-picker';
-import {useEffect, useState} from 'react';
+import {LocationSearch} from '@domain/entities';
 
-const Header = ({loc, onSelectDate, date, open, onClickDate}) => {
+type Props = {
+  loc: LocationSearch;
+  onSelectDate: (item: Date) => void;
+  date: Date;
+  open: boolean;
+  onClickDate: () => void;
+};
+
+const Header: React.FC<Props> = ({
+  loc,
+  onSelectDate,
+  date,
+  open,
+  onClickDate,
+}) => {
   const lastWeek = new Date();
   lastWeek.setDate(lastWeek.getDate() - 7);
   const nextWeek = new Date();
   nextWeek.setDate(nextWeek.getDate() + 7);
+
   moment.locale('id');
+
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   return (
@@ -34,12 +50,9 @@ const Header = ({loc, onSelectDate, date, open, onClickDate}) => {
             <Text
               ellipsizeMode="tail"
               numberOfLines={1}
-              style={{
-                textAlign: 'center',
-                height: 20,
-              }}>{`${loc.region == '' ? '' : loc.region + ','} ${
-              loc.country == '' ? '' : loc.country + ''
-            }`}</Text>
+              style={styles.curLocation}>{`${
+              loc.region === '' ? '' : loc.region + ','
+            } ${loc.country === '' ? '' : loc.country + ''}`}</Text>
           </View>
 
           <Image

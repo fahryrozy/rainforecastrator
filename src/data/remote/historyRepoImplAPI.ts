@@ -20,9 +20,10 @@ export default class HistoryRepoImplAPI {
         location: LocationAPI;
         forecast: ForecastAPI;
       } = await res;
+      console.log('rest => ', res);
       return data;
     } catch (err) {
-      console.log('err => ', err);
+      console.error('err => ', err);
       throw err;
     }
   }

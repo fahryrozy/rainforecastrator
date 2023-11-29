@@ -1,8 +1,18 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import {styles} from './Astronomy.styles';
+import {Astronomy, Location} from '@domain/entities';
 
-const AstronomyCard = ({data}) => {
+type Props = {
+  data:
+    | {
+        location: Location;
+        astronomy: Astronomy;
+      }
+    | undefined;
+};
+
+const AstronomyCard: React.FC<Props> = ({data}) => {
   return (
     <View style={styles.containerAstro}>
       <View style={styles.astroCard}>

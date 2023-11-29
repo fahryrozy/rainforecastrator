@@ -7,7 +7,7 @@ export default class ForecastRepoImplAPI {
   async getForecast(
     qlocation: string,
     days: number,
-    date?: string,
+    date: string,
   ): Promise<{
     location: LocationAPI;
     forecast: ForecastAPI;
@@ -17,13 +17,14 @@ export default class ForecastRepoImplAPI {
       const res = await fetchForecast({
         cityName: qlocation,
         days: days,
-        date,
+        date: date,
       });
       const data: {
         location: LocationAPI;
         forecast: ForecastAPI;
         alerts: AlertsAPI;
       } = await res;
+      console.log('data -> ', data);
       return data;
     } catch (err) {
       console.log('err => ', err);

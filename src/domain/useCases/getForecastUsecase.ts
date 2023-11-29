@@ -6,8 +6,8 @@ import {FORECAST_REPO} from '@core/constants';
 export interface IGetForecastUC {
   execute: (
     qlocation: string,
-    days?: number,
-    date?: string,
+    days: number,
+    date: string,
   ) => Promise<{
     location: Location;
     forecast: Forecast;
@@ -22,7 +22,7 @@ export class GetForecastUsecase implements IGetForecastUC {
     this.ForecastData = ForecastData;
   }
 
-  async execute(qlocation: string, days?: number, date?: string) {
+  async execute(qlocation: string, days: number, date: string) {
     return this.ForecastData.getForecast(qlocation, days, date);
   }
 }

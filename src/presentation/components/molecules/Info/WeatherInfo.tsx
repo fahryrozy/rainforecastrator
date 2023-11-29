@@ -4,8 +4,16 @@ import moment from 'moment';
 import 'moment/locale/id';
 import {styles} from './CurrentWeather.styles';
 import Clock from 'react-live-clock';
+import {Current, Location} from '@domain/entities';
 
-const WeatherInfo = ({data}) => {
+type Props = {
+  data: {
+    location: Location;
+    current: Current;
+  };
+};
+
+const WeatherInfo: React.FC<Props> = ({data}) => {
   moment.locale('id');
   return (
     <View style={styles.mainContainer}>

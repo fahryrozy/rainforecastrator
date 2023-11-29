@@ -6,12 +6,13 @@ import Forecast from '@presentation/components/molecules/Forecast/Forecast';
 import ConditionCard from '@presentation/components/molecules/Condition/ConditionCard';
 import useViewModel from './Home.VM';
 import WeatherInfo from '@presentation/components/molecules/Info/WeatherInfo';
-import moment from 'moment';
 import WeatherInfoOnDate from '@presentation/components/molecules/Info/WeatherInfoOnDate';
 
 const Home = () => {
   const {
     isToday,
+    onRefresh,
+    refreshing,
     weatherInfoDate,
     selectedLocation,
     weatherInfo,
@@ -28,7 +29,10 @@ const Home = () => {
   return (
     <>
       {selectedLocation && weatherInfo && (
-        <BaseLayout data={weatherInfo}>
+        <BaseLayout
+          data={weatherInfo}
+          onRefresh={onRefresh}
+          refreshing={refreshing}>
           <Header
             loc={selectedLocation}
             onSelectDate={setSelectedDate}
@@ -37,16 +41,16 @@ const Home = () => {
             onClickDate={onClickDate}
           />
           {isToday ? (
+            <WeatherInfo data={weatherInfo} />
+          ) : (
             <WeatherInfoOnDate
               data={weatherInfoDate}
               condition={selectedCondition}
             />
-          ) : (
-            <WeatherInfo data={weatherInfo} />
           )}
-          {/* <WeatherInfo data={weatherInfo} /> */}
           <AstronomyCard data={astronomy} />
           <Forecast
+            isToday={isToday}
             data={sortedForecasting}
             date={eventDate}
             setCurrCondition={setCurrCondition}

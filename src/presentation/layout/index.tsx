@@ -5,39 +5,47 @@ import {
   SafeAreaView,
   ImageBackground,
   ScrollView,
+  RefreshControl,
 } from 'react-native';
-import {useAppSelector} from '@core/config/store/hooks';
-import {currentStore} from '@core/config/store/slice/currentWeatherSlice';
 import {Current, Location} from '@domain/entities';
+import {styles} from './style';
+
 type BaseLayoutProps = {
   children: React.ReactNode;
   data: {
     location: Location;
     current: Current;
   };
+  onRefresh: () => void;
+  refreshing: boolean;
 };
 
-const BaseLayout: React.FC<BaseLayoutProps> = ({children, data}) => {
+const BaseLayout: React.FC<BaseLayoutProps> = ({
+  children,
+  data,
+  onRefresh,
+  refreshing,
+}) => {
   const {current} = data;
   const bg =
     current?.is_day !== 1
       ? require('../assets/images/bg-night.jpg')
       : require('../assets/images/bg-day.jpg');
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" />
       <ImageBackground
-        style={{
-          flex: 1,
-          paddingHorizontal: 10,
-          paddingTop: 50,
-          paddingBottom: 5,
-        }}
+        style={styles.backgroundContainer}
         blurRadius={50}
         source={bg}
         resizeMode="cover">
-        <SafeAreaView style={{height: '100%', overflow: 'hidden'}}>
-          <ScrollView style={{rowGap: 10, gap: 10}}>{children}</ScrollView>
+        <SafeAreaView style={styles.content}>
+          <ScrollView
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }>
+            {children}
+          </ScrollView>
         </SafeAreaView>
       </ImageBackground>
     </View>

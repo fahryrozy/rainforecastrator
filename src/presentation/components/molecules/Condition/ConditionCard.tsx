@@ -3,8 +3,13 @@ import React from 'react';
 import {styles} from './ConditionCard.style';
 import moment from 'moment';
 import {Typhography} from '@core/style';
+import {Hour} from '@domain/entities';
 
-const Condition = ({data}) => {
+type Props = {
+  data: Hour | undefined;
+};
+
+const Condition: React.FC<Props> = ({data}) => {
   return (
     <View>
       {data && (

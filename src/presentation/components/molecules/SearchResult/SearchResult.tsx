@@ -1,9 +1,14 @@
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {useAppDispatch, useAppSelector} from '@store/hooks';
-import {locationStore} from '@core/config/store/slice/locationSlice';
+import {styles} from './SearchResult.style';
+import {LocationSearch} from '@domain/entities';
 
-const SearchResult = ({data, onSelect}) => {
+type Props = {
+  data: Array<LocationSearch>;
+  onSelect: (loc: LocationSearch) => void;
+};
+
+const SearchResult: React.FC<Props> = ({data, onSelect}) => {
   console.log('location list => ', data);
   return (
     <View>
@@ -13,11 +18,7 @@ const SearchResult = ({data, onSelect}) => {
           renderItem={({item}) => (
             <TouchableOpacity
               onPress={() => onSelect(item)}
-              style={{
-                borderBottomColor: '#ccc',
-                borderBottomWidth: 1,
-                paddingVertical: 10,
-              }}>
+              style={styles.itemList}>
               <Text>
                 {item.name !== '' ? item.name + ', ' : ''}
                 {item.region !== '' ? item.region + ', ' : ''}

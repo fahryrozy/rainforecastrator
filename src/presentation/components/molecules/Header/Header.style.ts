@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
   },
-
   dateCard: {
     flex: 1,
     height: scale(30),
@@ -26,9 +25,10 @@ const styles = StyleSheet.create({
   },
   curLocation: {
     justifyContent: 'flex-end',
+    paddingHorizontal: scale(2),
     alignItems: 'flex-end',
     textAlign: 'right',
-    width: scale(175),
+    width: '100%',
     overflow: 'hidden',
   },
 });
