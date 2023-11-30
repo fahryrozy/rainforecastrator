@@ -5,6 +5,7 @@ import 'moment/locale/id';
 import {styles} from './CurrentWeather.styles';
 import Clock from 'react-live-clock';
 import {Current, Location} from '@domain/entities';
+import * as Sentry from '@sentry/react';
 
 type Props = {
   data: {
@@ -63,4 +64,4 @@ const WeatherInfo: React.FC<Props> = ({data}) => {
   );
 };
 
-export default WeatherInfo;
+export default Sentry.withProfiler(WeatherInfo);

@@ -3,8 +3,8 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {persistor, store} from '@core/config/store';
 import Router from '@presentation/nav';
-import * as Sentry from '@sentry/react-native';
 import Config from 'react-native-config';
+import * as Sentry from '@sentry/react-native';
 import {
   setJSExceptionHandler,
   setNativeExceptionHandler,
