@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Config from 'react-native-config';
-
+import {errorHandler} from '../helper/errorHandler';
 const apiKey = Config.API_KEY;
 const BASE_URL = Config.BASE_URL;
 
@@ -22,8 +22,7 @@ const apiCall = async (config: RequestConfig) => {
     const response = await axios.request(config);
     return response.data;
   } catch (error) {
-    console.log('error => ', error);
-    return {};
+    errorHandler(error);
   }
 };
 

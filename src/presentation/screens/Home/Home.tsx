@@ -7,9 +7,6 @@ import ConditionCard from '@presentation/components/molecules/Condition/Conditio
 import useViewModel from './Home.VM';
 import WeatherInfo from '@presentation/components/molecules/Info/WeatherInfo';
 import WeatherInfoOnDate from '@presentation/components/molecules/Info/WeatherInfoOnDate';
-import {Button} from 'react-native';
-import * as Sentry from '@sentry/react-native';
-
 const Home = () => {
   const {
     isToday,
@@ -41,12 +38,6 @@ const Home = () => {
             date={date}
             open={open}
             onClickDate={onClickDate}
-          />
-          <Button
-            title="Try!"
-            onPress={() => {
-              Sentry.captureException(new Error('First error'));
-            }}
           />
           {isToday ? (
             <WeatherInfo data={weatherInfo} />

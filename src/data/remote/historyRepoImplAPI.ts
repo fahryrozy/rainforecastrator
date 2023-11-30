@@ -1,7 +1,6 @@
 import {injectable} from 'inversify';
 import {ForecastAPI, LocationAPI} from './entities';
 import {fetchHistory} from '@core/config/api/config';
-
 @injectable()
 export default class HistoryRepoImplAPI {
   async getHistory(
@@ -20,10 +19,8 @@ export default class HistoryRepoImplAPI {
         location: LocationAPI;
         forecast: ForecastAPI;
       } = await res;
-      console.log('rest => ', res);
       return data;
     } catch (err) {
-      console.error('err => ', err);
       throw err;
     }
   }

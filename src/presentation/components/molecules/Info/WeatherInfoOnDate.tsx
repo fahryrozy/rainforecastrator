@@ -18,7 +18,6 @@ type Props = {
 
 const WeatherInfoOnDate: React.FC<Props> = ({data, condition}) => {
   moment.locale('en');
-  console.log('cond => ', condition);
   return (
     <View style={styles.mainContainer}>
       {data && condition && (

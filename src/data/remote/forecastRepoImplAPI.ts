@@ -24,7 +24,6 @@ export default class ForecastRepoImplAPI {
         forecast: ForecastAPI;
         alerts: AlertsAPI;
       } = await res;
-      console.log('data -> ', data);
       return data;
     } catch (err) {
       console.log('err => ', err);
