@@ -11,9 +11,9 @@ export const AnimatedBootSplash = ({onAnimationEnd}: Props) => {
   const [translateY] = useState(() => new Animated.Value(0));
 
   const {container, logo /*, brand */} = BootSplash.useHideAnimation({
-    manifest: require('assets/bootsplash_manifest.json'),
+    manifest: require('assets/splash/bootsplash_manifest.json'),
 
-    logo: require('assets/icons/apple.png'),
+    logo: require('assets/images/bg-night.jpg'),
     // darkLogo: require("../assets/bootsplash_dark_logo.png"),
     // brand: require("../assets/bootsplash_brand.png"),
     // darkBrand: require("../assets/bootsplash_dark_brand.png"),

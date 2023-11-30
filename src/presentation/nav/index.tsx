@@ -2,8 +2,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import BootSplash from 'react-native-bootsplash';
-import {AnimatedBootSplash} from '@presentation/screens/Splash/SplashScreen';
 
+BootSplash.isVisible().then(value => console.log(value));
 import NetInfo from '@react-native-community/netinfo';
 
 const Stack = createNativeStackNavigator();
@@ -23,30 +23,25 @@ const CustomTransition = {
 */
 import Home from '@presentation/screens/Home/Home';
 import Search from '@presentation/screens/Search/Search';
+import OfflineScreen from '@presentation/screens/Offline/OfflineScreen';
 
 const Router = () => {
-  const [visible, setVisible] = useState(true);
+  const [isOffline, setIsOffline] = useState(false);
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener(state => {
       console.log(state);
       if (!state.isConnected && !state.isInternetReachable) {
-        console.log('offline');
-      }
+        setIsOffline(true);
+      } else setIsOffline(false);
     });
     return () => {
       unsubscribe();
     };
-  }, []);
-  useEffect(() => {
-    const init = async () => {
-      // …do multiple sync or async tasks
-    };
+  }, [isOffline]);
 
-    init().finally(async () => {
-      await BootSplash.hide({fade: true});
-      console.log('BootSplash has been hidden successfully');
-    });
-  }, []);
+  if (isOffline) {
+    return <OfflineScreen />;
+  }
 
   return (
     <NavigationContainer

@@ -25,6 +25,7 @@
     "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "i": "^0.3.7",
     "inversify": "^6.0.2",
+    "lottie-react-native": "^6.4.1",
     "moment": "^2.29.4",
     "npm": "^10.2.4",
     "react": "18.2.0",

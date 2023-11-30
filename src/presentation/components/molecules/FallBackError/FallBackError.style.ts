@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
   },
   content: {
     marginHorizontal: 16,
+    flex: 1,
   },
   title: {
     fontSize: 48,
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
   },
   button: {
-    backgroundColor: '#2196f3',
+    backgroundColor: '#21cdce',
     borderRadius: 50,
     padding: 16,
   },

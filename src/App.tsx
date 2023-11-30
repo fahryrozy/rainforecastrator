@@ -10,10 +10,21 @@ import {
   setNativeExceptionHandler,
 } from 'react-native-exception-handler';
 import FallbackComponent from '@presentation/components/molecules/FallBackError/FallBackError';
+import ErrorScreen from '@presentation/screens/Error/ErrorScreen';
+import OfflineScreen from '@presentation/screens/Offline/OfflineScreen';
 
 Sentry.init({
   dsn: Config.SENTRY_DSN,
 });
+
+type FallBackRenderProps = {
+  error: Error;
+  resetError: () => void;
+};
+
+const myFallbackRender = ({error, resetError}: FallBackRenderProps) => (
+  <FallbackComponent error={error} resetError={resetError} />
+);
 
 const errorHandler = (e: any) => {
   Sentry.captureException(e);
@@ -24,15 +35,6 @@ setJSExceptionHandler(errorHandler, true);
 setNativeExceptionHandler(errorString => {
   console.log('setNativeExceptionHandler => ', errorString);
 }, true);
-
-type FallBackRenderProps = {
-  error: Error;
-  resetError: () => void;
-};
-
-const myFallbackRender = ({error, resetError}: FallBackRenderProps) => (
-  <FallbackComponent error={error} resetError={resetError} />
-);
 
 const App = () => {
   return (
