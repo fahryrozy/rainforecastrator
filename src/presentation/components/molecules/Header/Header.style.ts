@@ -14,6 +14,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     gap: scale(2),
   },
+  dateText: {
+    color: '#fff',
+  },
   locCard: {
     flex: 3,
     paddingHorizontal: scale(10),
@@ -30,6 +33,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     width: '100%',
     overflow: 'hidden',
+    color: '#fff',
   },
 });
 export default styles;

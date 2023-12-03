@@ -9,10 +9,8 @@ export default class LocationRepoImplAPI {
       const res = await fetchLocation({
         cityName: qLocation,
       });
-      console.log('res location => ', res);
       return res;
     } catch (err) {
-      console.log('err => ', err);
       throw err;
     }
   }

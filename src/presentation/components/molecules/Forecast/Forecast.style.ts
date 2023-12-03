@@ -54,7 +54,11 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'rgba(255, 255, 255, 1)',
     fontFamily: 'Poppins',
-    fontSize: scale(64),
+  },
+  timeText: {
+    textAlign: 'center',
+    color: 'rgba(255, 255, 255, 1)',
+    fontFamily: 'Poppins',
   },
   loc: {
     rowGap: scale(10),
@@ -63,19 +67,5 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: '30%',
     backgroundColor: '#000',
-  },
-  locText: {
-    textAlign: 'center',
-    color: 'rgba(255, 255, 255, 1)',
-    fontFamily: 'Poppins',
-    fontSize: scale(24),
-    fontWeight: '400',
-  },
-  minMaxText: {
-    textAlign: 'center',
-    color: 'rgba(255, 255, 255, 1)',
-    fontFamily: 'Poppins',
-    fontSize: scale(20),
-    fontWeight: '400',
   },
 });

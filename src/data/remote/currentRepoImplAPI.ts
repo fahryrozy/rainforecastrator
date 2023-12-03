@@ -18,7 +18,6 @@ export default class CurrentRepoImplAPI {
       } = await res;
       return data;
     } catch (err) {
-      console.log('err => ', err);
       throw err;
     }
   }

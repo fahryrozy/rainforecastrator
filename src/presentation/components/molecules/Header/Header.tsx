@@ -38,9 +38,9 @@ const Header: React.FC<Props> = ({
       <TouchableOpacity style={styles.dateCard} onPress={onClickDate}>
         <Image
           style={[iconStyle.iconSmall]}
-          source={require('../../../assets/icons/calendar.png')}
+          source={require('assets/icons/calendar.png')}
         />
-        <Text style={{}}>{`${moment(date).format('ll')}`}</Text>
+        <Text style={styles.dateText}>{`${moment(date).format('ll')}`}</Text>
       </TouchableOpacity>
       {loc && (
         <TouchableOpacity

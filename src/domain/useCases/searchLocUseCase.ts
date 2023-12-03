@@ -15,7 +15,6 @@ export class LocationUseCase implements SearchLocationUC {
   }
 
   async execute(qlocation: string) {
-    console.log('query => ', qlocation);
     return this.location.getLocation(qlocation);
   }
 }

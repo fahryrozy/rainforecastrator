@@ -63,7 +63,6 @@ export const fetchHistory = (params: PayloadRequest) => {
 };
 
 export const fetchLocation = (params: PayloadRequest) => {
-  console.log('Text => ', params.cityName);
   const options = {
     method: 'GET',
     url: `search.json?key=${apiKey}&q=${params.cityName}`,
