@@ -13,7 +13,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '@presentation/nav';
 
 const SearchVM = () => {
-  const [qLocation, setqLocation] = useState<string>('');
+  const [qLocation, setQLocation] = useState('');
   const [fetchedLocation, setFetchedLocation] = useState<Array<LocationSearch>>(
     [],
   );
@@ -21,9 +21,8 @@ const SearchVM = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const dispatch = useAppDispatch();
-  const handleChangeText = (text: string) => setqLocation(text);
   const handleSearch = async (text: string) => {
-    setqLocation(text);
+    setQLocation(text);
     if (text.length >= 3) {
       const resolve = container.resolve(LocationUseCase);
       const res = await resolve.execute(text);
@@ -45,7 +44,6 @@ const SearchVM = () => {
   return {
     qLocation,
     fetchedLocation,
-    handleChangeText,
     handleSearch,
     selectLocation,
     reselectLocation,
