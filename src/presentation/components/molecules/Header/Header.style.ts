@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   dateCard: {
-    flex: 1,
+    flex: 2,
     height: scale(30),
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     gap: scale(2),
   },
   locCard: {
-    flex: 2,
-    paddingHorizontal: scale(2),
+    flex: 3,
+    paddingHorizontal: scale(10),
     height: scale(30),
     alignItems: 'flex-start',
     justifyContent: 'flex-end',

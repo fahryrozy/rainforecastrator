@@ -1,21 +1,40 @@
-import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import React from 'react';
 import moment from 'moment';
 import {styles} from './Forecast.style';
 import {Hour} from '@domain/entities';
 import {Typhography} from '@core/style';
 
-type ItemProps = {hourly_forecast: Hour; onPress: any};
+type ItemProps = {hourly_forecast: Hour; onPress: any; isLoading: boolean};
 
-const RenderedCard: React.FC<ItemProps> = ({hourly_forecast, onPress}) => (
-  <TouchableOpacity style={styles.renderedCard} onPress={onPress}>
-    <Text>{`${hourly_forecast.temp_c}°`}</Text>
-    <Image
-      source={{uri: `https:${hourly_forecast.condition.icon}`}}
-      style={styles.icon}
-    />
-    <Text>{`${moment(hourly_forecast.time).format('h A')}`}</Text>
-  </TouchableOpacity>
+const RenderedCard: React.FC<ItemProps> = ({
+  hourly_forecast,
+  onPress,
+  isLoading,
+}) => (
+  <>
+    {isLoading ? (
+      <View style={styles.renderedCard}>
+        <ActivityIndicator size="small" color="#fff" />
+      </View>
+    ) : (
+      <TouchableOpacity style={styles.renderedCard} onPress={onPress}>
+        <Text>{`${hourly_forecast.temp_c}°`}</Text>
+        <Image
+          source={{uri: `https:${hourly_forecast.condition.icon}`}}
+          style={styles.icon}
+        />
+        <Text>{`${moment(hourly_forecast.time).format('h A')}`}</Text>
+      </TouchableOpacity>
+    )}
+  </>
 );
 
 type Props = {
@@ -23,9 +42,16 @@ type Props = {
   date: string;
   setCurrCondition: (item: Hour) => void;
   isToday: boolean;
+  isLoading: boolean;
 };
 
-const Forecast: React.FC<Props> = ({data, date, setCurrCondition, isToday}) => {
+const Forecast: React.FC<Props> = ({
+  data,
+  date,
+  setCurrCondition,
+  isToday,
+  isLoading,
+}) => {
   moment.locale('en');
   return (
     <View style={styles.forecastCard}>
@@ -56,6 +82,7 @@ const Forecast: React.FC<Props> = ({data, date, setCurrCondition, isToday}) => {
             renderItem={({item}) => (
               <RenderedCard
                 hourly_forecast={item}
+                isLoading={isLoading}
                 onPress={() => setCurrCondition(item)}
               />
             )}

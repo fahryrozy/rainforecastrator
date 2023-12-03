@@ -1,10 +1,11 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, ActivityIndicator} from 'react-native';
 import React from 'react';
 import moment from 'moment';
 import 'moment/locale/id';
 import {styles} from './CurrentWeather.styles';
 import Clock from 'react-live-clock';
 import {Forecast, Hour, Location} from '@domain/entities';
+import {Code} from 'react-content-loader/native';
 
 type Props = {
   data:
@@ -14,10 +15,21 @@ type Props = {
       }
     | undefined;
   condition: Hour | undefined;
+  isLoading: boolean;
 };
 
-const WeatherInfoOnDate: React.FC<Props> = ({data, condition}) => {
+const WeatherInfoOnDate: React.FC<Props> = ({data, condition, isLoading}) => {
   moment.locale('en');
+
+  if (isLoading) {
+    return (
+      <ActivityIndicator
+        size="large"
+        color="#fff"
+        style={styles.mainContainer}
+      />
+    );
+  }
   return (
     <View style={styles.mainContainer}>
       {data && condition && (

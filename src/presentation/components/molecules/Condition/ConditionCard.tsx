@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View, Text, ActivityIndicator} from 'react-native';
 import React from 'react';
 import {styles} from './ConditionCard.style';
 import moment from 'moment';
@@ -7,9 +7,10 @@ import {Hour} from '@domain/entities';
 
 type Props = {
   data: Hour | undefined;
+  isLoading: boolean;
 };
 
-const Condition: React.FC<Props> = ({data}) => {
+const Condition: React.FC<Props> = ({data, isLoading}) => {
   return (
     <View>
       {data && (
@@ -17,26 +18,44 @@ const Condition: React.FC<Props> = ({data}) => {
           <View style={styles.astroTitle}>
             {data && (
               <Text style={Typhography.captionDefault()}>
-                {`Condition at ${moment(data.time).format('LT')}`}
+                {`Condition at ${
+                  isLoading ? '' : moment(data.time).format('LT')
+                }`}
               </Text>
             )}
           </View>
           <View style={styles.astroContent}>
             <View style={styles.currentWeather}>
               <Text style={styles.label}>Temp</Text>
-              <Text style={styles.value}>{data?.temp_c}</Text>
+              {isLoading ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                <Text style={styles.value}>{data?.temp_c}</Text>
+              )}
             </View>
             <View style={styles.currentWeather}>
               <Text style={styles.label}>Wind Dir</Text>
-              <Text style={styles.value}>{data?.wind_dir}</Text>
+              {isLoading ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                <Text style={styles.value}>{data?.wind_dir}</Text>
+              )}
             </View>
             <View style={styles.currentWeather}>
               <Text style={styles.label}>Humidity</Text>
-              <Text style={styles.value}>{data?.humidity}</Text>
+              {isLoading ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                <Text style={styles.value}>{data?.humidity}</Text>
+              )}
             </View>
             <View style={styles.currentWeather}>
               <Text style={styles.label}>Moonrise</Text>
-              <Text style={styles.value}>{data.humidity}</Text>
+              {isLoading ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                <Text style={styles.value}>{data.humidity}</Text>
+              )}
             </View>
           </View>
         </View>

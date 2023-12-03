@@ -5,8 +5,8 @@ import AstronomyCard from '@presentation/components/molecules/Astronomy/Astronom
 import Forecast from '@presentation/components/molecules/Forecast/Forecast';
 import ConditionCard from '@presentation/components/molecules/Condition/ConditionCard';
 import useViewModel from './Home.VM';
-import WeatherInfo from '@presentation/components/molecules/Info/WeatherInfo';
-import WeatherInfoOnDate from '@presentation/components/molecules/Info/WeatherInfoOnDate';
+import WeatherInfo from '@presentation/components/molecules/WeatherInfo/WeatherInfo';
+import WeatherInfoOnDate from '@presentation/components/molecules/WeatherInfo/WeatherInfoOnDate';
 const Home = () => {
   const {
     isToday,
@@ -21,10 +21,12 @@ const Home = () => {
     date,
     eventDate,
     open,
+    loading,
     onClickDate,
     setCurrCondition,
     setSelectedDate,
   } = useViewModel();
+  console.log('loading => ', loading);
   return (
     <>
       {selectedLocation && weatherInfo && (
@@ -40,21 +42,23 @@ const Home = () => {
             onClickDate={onClickDate}
           />
           {isToday ? (
-            <WeatherInfo data={weatherInfo} />
+            <WeatherInfo data={weatherInfo} isLoading={loading} />
           ) : (
             <WeatherInfoOnDate
+              isLoading={loading}
               data={weatherInfoDate}
               condition={selectedCondition}
             />
           )}
-          <AstronomyCard data={astronomy} />
+          <AstronomyCard data={astronomy} isLoading={loading} />
           <Forecast
             isToday={isToday}
+            isLoading={loading}
             data={sortedForecasting}
             date={eventDate}
             setCurrCondition={setCurrCondition}
           />
-          <ConditionCard data={selectedCondition} />
+          <ConditionCard data={selectedCondition} isLoading={loading} />
         </BaseLayout>
       )}
     </>

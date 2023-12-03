@@ -32,7 +32,7 @@ const ErrorScreen: React.FC<Props> = ({error, resetError}) => {
 export default ErrorScreen;
 
 const styles = StyleSheet.create({
-  container: {flex: 1},
+  container: {flex: 1, backgroundColor: '#fff'},
 
   content: {
     marginHorizontal: 16,
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   },
   error: {
     paddingVertical: 16,
+    color: '#222',
   },
   button: {
     backgroundColor: '#21cdce',

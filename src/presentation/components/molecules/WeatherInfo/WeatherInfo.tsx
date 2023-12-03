@@ -1,4 +1,4 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, ActivityIndicator} from 'react-native';
 import React from 'react';
 import moment from 'moment';
 import 'moment/locale/id';
@@ -6,16 +6,28 @@ import {styles} from './CurrentWeather.styles';
 import Clock from 'react-live-clock';
 import {Current, Location} from '@domain/entities';
 import * as Sentry from '@sentry/react';
+import ContentLoader, {Facebook, Code, Rect} from 'react-content-loader/native';
+// import LoaderKit from 'react-native-loader-kit';
 
 type Props = {
   data: {
     location: Location;
     current: Current;
   };
+  isLoading: boolean;
 };
 
-const WeatherInfo: React.FC<Props> = ({data}) => {
+const WeatherInfo: React.FC<Props> = ({data, isLoading}) => {
   moment.locale('id');
+  if (isLoading) {
+    return (
+      <ActivityIndicator
+        size="large"
+        color="#fff"
+        style={styles.mainContainer}
+      />
+    );
+  }
   return (
     <View style={styles.mainContainer}>
       {data && (

@@ -9,7 +9,6 @@ type Props = {
 };
 
 const SearchResult: React.FC<Props> = ({data, onSelect}) => {
-  console.log('location list => ', data);
   return (
     <View>
       {data && (

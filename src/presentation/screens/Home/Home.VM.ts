@@ -11,7 +11,7 @@ import {GetHistoryUsecase} from '@domain/useCases/getHistoryUsecase';
 
 const HomeVM = () => {
   const [refreshing, setRefreshing] = useState<boolean>(false);
-
+  const [loading, setLoading] = useState(false);
   const [weatherInfo, setWeatherInfo] = useState<{
     location: Location;
     current: Current;
@@ -55,16 +55,21 @@ const HomeVM = () => {
   };
 
   const getWeather = async () => {
+    setLoading(true);
     const resolve = container.resolve(GetCurrentUsecase);
     const res = await resolve.execute(`id:${selectedLocation.id}`);
     setWeatherInfo(res);
+    setLoading(false);
   };
 
   const getWeatherDate = async () => {
+    setLoading(true);
     const resolve = container.resolve(GetHistoryUsecase);
     const res = await resolve.execute(`id:${selectedLocation.id}`, eventDate);
     setWeatherInfoDate(res);
-    setForecastHourly(res);
+    if (!isToday) setForecastHourly(res);
+
+    setLoading(false);
   };
 
   const getAstro = async () => {
@@ -75,6 +80,7 @@ const HomeVM = () => {
   };
 
   const getForecastHourly = async () => {
+    setLoading(true);
     const resolve = container.resolve(GetForecastUsecase);
     const res = await resolve.execute(
       `id:${selectedLocation.id}`,
@@ -82,10 +88,12 @@ const HomeVM = () => {
       eventDate,
     );
     setForecastHourly(res);
+    setLoading(false);
     return res;
   };
 
   const sortTime = (data: {location: Location; forecast: Forecast}) => {
+    setLoading(true);
     if (
       data?.forecast?.forecastday?.length > 0 &&
       data?.forecast?.forecastday[0]?.hour?.length > 0
@@ -109,6 +117,7 @@ const HomeVM = () => {
       setSortedForecasting([]);
       setSelectedCondition(undefined);
     }
+    setLoading(false);
   };
 
   const setCurrCondition = (item: Hour) => {
@@ -118,10 +127,7 @@ const HomeVM = () => {
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
-      getWeather();
-      getForecastHourly();
-      getWeatherDate();
-      getAstro();
+      setToday();
       setRefreshing(false);
     }, 2000);
   }, []);
@@ -144,6 +150,7 @@ const HomeVM = () => {
 
   return {
     isToday,
+    loading,
     onRefresh,
     refreshing,
     weatherInfo,

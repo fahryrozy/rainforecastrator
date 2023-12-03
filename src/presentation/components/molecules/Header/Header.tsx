@@ -27,7 +27,7 @@ const Header: React.FC<Props> = ({
   const lastWeek = new Date();
   lastWeek.setDate(lastWeek.getDate() - 7);
   const nextWeek = new Date();
-  nextWeek.setDate(nextWeek.getDate() + 7);
+  nextWeek.setDate(nextWeek.getDate());
 
   moment.locale('id');
 
@@ -57,7 +57,7 @@ const Header: React.FC<Props> = ({
 
           <Image
             style={[iconStyle.iconSmall]}
-            source={require('../../../assets/icons/loc-icon.png')}
+            source={require('assets/icons/loc-icon.png')}
           />
         </TouchableOpacity>
       )}
