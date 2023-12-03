@@ -26,7 +26,6 @@ const Home = () => {
     setCurrCondition,
     setSelectedDate,
   } = useViewModel();
-  console.log('loading => ', loading);
   return (
     <>
       {selectedLocation && weatherInfo && (
