@@ -8,17 +8,8 @@ export default class CurrentRepoImplAPI {
     location: LocationAPI;
     current: CurrentAPI;
   }> {
-    try {
-      const res = await fetchCurrent({
-        cityName: qlocation,
-      });
-      const data: {
-        location: LocationAPI;
-        current: CurrentAPI;
-      } = await res;
-      return data;
-    } catch (err) {
-      throw err;
-    }
+    return await fetchCurrent({
+      cityName: qlocation,
+    });
   }
 }

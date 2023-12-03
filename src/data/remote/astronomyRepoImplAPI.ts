@@ -11,18 +11,9 @@ export default class AstronomyRepoImplAPI {
     location: LocationAPI;
     astronomy: AstronomyAPI;
   }> {
-    try {
-      const res = await fetchAstronomy({
-        cityName: qlocation,
-        date: date,
-      });
-      const data: {
-        location: LocationAPI;
-        astronomy: AstronomyAPI;
-      } = await res;
-      return data;
-    } catch (err) {
-      throw err;
-    }
+    return await fetchAstronomy({
+      cityName: qlocation,
+      date: date,
+    });
   }
 }

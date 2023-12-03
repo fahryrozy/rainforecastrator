@@ -102,7 +102,7 @@ const HomeVM = () => {
         parseFloat(
           moment(data.location.localtime, 'YYYY-MM-DD H:m').format('Hmm'),
         ) - 30;
-      let sorted = [...data?.forecast?.forecastday[0]?.hour].sort((a, b) => {
+      let sorted = [...data.forecast.forecastday[0].hour].sort((a, b) => {
         const x =
           currTime - parseFloat(moment(a.time, 'YYYY-MM-DD H:m').format('Hmm'));
         const y =

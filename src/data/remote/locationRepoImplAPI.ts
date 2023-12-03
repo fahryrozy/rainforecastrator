@@ -5,13 +5,8 @@ import {LocationSearchAPI} from './entities';
 @injectable()
 export default class LocationRepoImplAPI {
   async getLocation(qLocation: string): Promise<LocationSearchAPI[]> {
-    try {
-      const res = await fetchLocation({
-        cityName: qLocation,
-      });
-      return res;
-    } catch (err) {
-      throw err;
-    }
+    return await fetchLocation({
+      cityName: qLocation,
+    });
   }
 }

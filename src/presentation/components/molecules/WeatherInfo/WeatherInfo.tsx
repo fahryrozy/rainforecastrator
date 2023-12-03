@@ -6,8 +6,6 @@ import {styles} from './CurrentWeather.styles';
 import Clock from 'react-live-clock';
 import {Current, Location} from '@domain/entities';
 import * as Sentry from '@sentry/react';
-import ContentLoader, {Facebook, Code, Rect} from 'react-content-loader/native';
-// import LoaderKit from 'react-native-loader-kit';
 
 type Props = {
   data: {
@@ -38,7 +36,7 @@ const WeatherInfo: React.FC<Props> = ({data, isLoading}) => {
             </Text>
             <View style={styles.locTimeCard}>
               <Text style={styles.locTime}>Local time : </Text>
-              {data?.location?.tz_id && (
+              {data?.location?.tz_id ? (
                 <Clock
                   style={styles.locTime}
                   format={'HH:mm:ss'}
@@ -46,6 +44,8 @@ const WeatherInfo: React.FC<Props> = ({data, isLoading}) => {
                   element={Text}
                   timezone={data.location.tz_id}
                 />
+              ) : (
+                <Text>N/A</Text>
               )}
             </View>
           </View>

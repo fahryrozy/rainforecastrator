@@ -10,18 +10,9 @@ export default class HistoryRepoImplAPI {
     location: LocationAPI;
     forecast: ForecastAPI;
   }> {
-    try {
-      const res = await fetchHistory({
-        cityName: qlocation,
-        date: date,
-      });
-      const data: {
-        location: LocationAPI;
-        forecast: ForecastAPI;
-      } = await res;
-      return data;
-    } catch (err) {
-      throw err;
-    }
+    return await fetchHistory({
+      cityName: qlocation,
+      date: date,
+    });
   }
 }

@@ -5,7 +5,6 @@ import 'moment/locale/id';
 import {styles} from './CurrentWeather.styles';
 import Clock from 'react-live-clock';
 import {Forecast, Hour, Location} from '@domain/entities';
-import {Code} from 'react-content-loader/native';
 
 type Props = {
   data:
@@ -40,7 +39,7 @@ const WeatherInfoOnDate: React.FC<Props> = ({data, condition, isLoading}) => {
             </Text>
             <View style={styles.locTimeCard}>
               <Text style={styles.locTime}>Local time : </Text>
-              {data?.location?.tz_id && (
+              {data?.location?.tz_id ? (
                 <Clock
                   style={styles.locTime}
                   format={'HH:mm:ss'}
@@ -48,6 +47,8 @@ const WeatherInfoOnDate: React.FC<Props> = ({data, condition, isLoading}) => {
                   element={Text}
                   timezone={data.location.tz_id}
                 />
+              ) : (
+                <Text>N/A</Text>
               )}
             </View>
           </View>

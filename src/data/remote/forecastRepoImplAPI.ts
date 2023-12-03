@@ -13,20 +13,10 @@ export default class ForecastRepoImplAPI {
     forecast: ForecastAPI;
     alerts: AlertsAPI;
   }> {
-    try {
-      const res = await fetchForecast({
-        cityName: qlocation,
-        days: days,
-        date: date,
-      });
-      const data: {
-        location: LocationAPI;
-        forecast: ForecastAPI;
-        alerts: AlertsAPI;
-      } = await res;
-      return data;
-    } catch (err) {
-      throw err;
-    }
+    return await fetchForecast({
+      cityName: qlocation,
+      days: days,
+      date: date,
+    });
   }
 }
