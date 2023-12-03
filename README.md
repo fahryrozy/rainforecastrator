@@ -1,79 +1,74 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Rain Forecastrator
 
-# Getting Started
+Rain Forecastrator is a React Native mobile application that allows users to monitor weather using the [WeatherAPI](https://www.weatherapi.com). Stay informed about current weather conditions, get forecasts, and plan your activities accordingly.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Features
 
-## Step 1: Start the Metro Server
+- **Current Weather:** View real-time weather conditions at your location.
+- **Forecast:** Get a detailed weather forecast for the upcoming days.
+- **Location-based:** Automatically fetch weather information based on the user's location.
+- **Custom Locations:** Search and add custom locations to check weather conditions for different places.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Screenshots
 
-To start Metro, run the following command from the _root_ of your React Native project:
+Include screenshots or GIFs showcasing your app's interface and features.
 
-```bash
-# using npm
-npm start
+## Prerequisites
 
-# OR using Yarn
-yarn start
-```
+Before you begin, ensure you have met the following requirements:
 
-## Step 2: Start your Application
+- Node.js installed
+- npm or yarn installed
+- React Native development environment set up
+- WeatherAPI key (Sign up at [WeatherAPI](https://www.weatherapi.com) to obtain your API key)
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## Installation
 
-### For Android
+1. Clone the repository:
 
-```bash
-# using npm
-npm run android
+   ```bash
+   git clone https://github.com/yourusername/rain-forecastrator.git
 
-# OR using Yarn
-yarn android
-```
+   ```
 
-### For iOS
+2. Navigate to the project directory
 
-```bash
-# using npm
-npm run ios
+   ```bash
+   cd RainForecastRator
 
-# OR using Yarn
-yarn ios
-```
+   ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+3. Install dependencies:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+   ```bash
+   npm install
 
-## Step 3: Modifying your App
+   ```
 
-Now that you have successfully run the app, let's modify it.
+4. Create a .env file in the project root and add your Config like this:
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+   ```bash
+   BASE_URL=<WEATHER_API_BASE_URL>
+   API_KEY=<YOUR_KEY>
+   SENTRY_DSN=<YOUR_SENTRY_DSN>
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+   ```
 
-## Congratulations! :tada:
+5. Run the application :
 
-You've successfully run and modified your React Native App. :partying_face:
+   ```bash
+   npx react-native run-android
 
-### Now what?
+   ```
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+## Acknowledgement
 
-# Troubleshooting
+Thanks to WeatherAPI for providing the weather data.
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## Contact
 
-# Learn More
+For any questions or concerns, feel free to reach out to [fahryrozysrg@gmail.com].
 
-To learn more about React Native, take a look at the following resources:
+## LIMITATION
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Currently, Rain Forecastrator has been tested only on Android devices.
