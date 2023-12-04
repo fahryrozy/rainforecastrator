@@ -5,8 +5,8 @@ Rain Forecastrator is a React Native mobile application that allows users to mon
 ## Features
 
 - **Current Weather:** View real-time weather conditions at your location.
-- **Forecast:** Get a detailed weather forecast for the upcoming days.
-- **Location-based:** Automatically fetch weather information based on the user's location.
+- **Forecast:** Get a detailed weather forecast for the current and past days.
+- **Location-based:** Fetch weather information based on the user's input location.
 - **Custom Locations:** Search and add custom locations to check weather conditions for different places.
 
 ## Screenshots
