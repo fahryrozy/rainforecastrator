@@ -41,6 +41,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
         resizeMode="cover">
         <SafeAreaView style={styles.content}>
           <ScrollView
+            showsVerticalScrollIndicator={false}
             refreshControl={
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }>

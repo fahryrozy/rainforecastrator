@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {GetCurrentUsecase} from '@domain/useCases/getCurrentUsecase';
 import {useAppSelector} from '@core/config/store/hooks';
 import container from '@di/inversify.config';
@@ -58,24 +58,23 @@ const HomeVM = () => {
     setLoading(true);
     const resolve = container.resolve(GetCurrentUsecase);
     const res = await resolve.execute(`id:${selectedLocation.id}`);
-    setWeatherInfo(res);
     setLoading(false);
+    return res;
   };
 
   const getWeatherDate = async () => {
     setLoading(true);
     const resolve = container.resolve(GetHistoryUsecase);
     const res = await resolve.execute(`id:${selectedLocation.id}`, eventDate);
-    setWeatherInfoDate(res);
-    if (!isToday) setForecastHourly(res);
-
     setLoading(false);
+    return res;
   };
 
   const getAstro = async () => {
+    setLoading(true);
     const resolve = container.resolve(GetAstronomyUsecase);
     const res = await resolve.execute(`id:${selectedLocation.id}`, eventDate);
-    setAstronomy(res);
+    setLoading(false);
     return res;
   };
 
@@ -87,13 +86,11 @@ const HomeVM = () => {
       1,
       eventDate,
     );
-    setForecastHourly(res);
     setLoading(false);
     return res;
   };
 
   const sortTime = (data: {location: Location; forecast: Forecast}) => {
-    setLoading(true);
     if (
       data?.forecast?.forecastday?.length > 0 &&
       data?.forecast?.forecastday[0]?.hour?.length > 0
@@ -117,35 +114,48 @@ const HomeVM = () => {
       setSortedForecasting([]);
       setSelectedCondition(undefined);
     }
-    setLoading(false);
+  };
+
+  const getData = () => {
+    if (isToday) {
+      getWeather().then(data => setWeatherInfo(data));
+      getForecastHourly().then(data => {
+        setForecastHourly(data);
+        sortTime(data);
+      });
+    } else {
+      getWeatherDate().then(data => {
+        setForecastHourly(data);
+        setWeatherInfoDate(data);
+        sortTime(data);
+      });
+    }
+    getAstro().then(data => {
+      setAstronomy(data);
+    });
   };
 
   const setCurrCondition = (item: Hour) => {
     setSelectedCondition(item);
   };
 
-  const onRefresh = useCallback(() => {
+  const onRefresh = () => {
     setRefreshing(true);
-    setTimeout(() => {
-      setToday();
-      setRefreshing(false);
-    }, 2000);
-  }, []);
+    if (isToday) getData();
+    else setToday();
+    setRefreshing(false);
+  };
 
   useEffect(() => {
-    if (isToday) {
-      getWeather();
-      getForecastHourly();
-    } else getWeatherDate();
-    getAstro();
+    getData();
   }, [selectedLocation, eventDate]);
 
   useEffect(() => {
     if (forecastHourly) sortTime(forecastHourly);
-  }, [forecastHourly, weatherInfoDate]);
+  }, [forecastHourly]);
 
   useEffect(() => {
-    setToday();
+    if (!isToday) setToday();
   }, [selectedLocation]);
 
   return {
@@ -156,6 +166,7 @@ const HomeVM = () => {
     weatherInfo,
     weatherInfoDate,
     astronomy,
+    forecastHourly,
     sortedForecasting,
     selectedCondition,
     selectedLocation,

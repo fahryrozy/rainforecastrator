@@ -6,7 +6,6 @@ import Home from '@presentation/screens/Home/Home';
 import Search from '@presentation/screens/Search/Search';
 import OfflineScreen from '@presentation/screens/Offline/OfflineScreen';
 
-BootSplash.isVisible().then(value => console.log(value));
 import NetInfo from '@react-native-community/netinfo';
 
 const Stack = createNativeStackNavigator();
@@ -24,7 +23,6 @@ const Router = () => {
   const [isOffline, setIsOffline] = useState(false);
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener(state => {
-      console.log(state);
       if (!state.isConnected && !state.isInternetReachable) {
         setIsOffline(true);
       } else setIsOffline(false);

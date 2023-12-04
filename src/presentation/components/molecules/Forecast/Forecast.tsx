@@ -91,6 +91,7 @@ const Forecast: React.FC<Props> = ({
                 onPress={() => setCurrCondition(item)}
               />
             )}
+            showsHorizontalScrollIndicator={false}
           />
         )}
       </View>

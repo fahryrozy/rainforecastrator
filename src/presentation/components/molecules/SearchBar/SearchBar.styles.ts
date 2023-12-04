@@ -28,6 +28,9 @@ export const styles = StyleSheet.create({
     paddingVertical: 2,
     backgroundColor: '#333',
   },
+  textValue: {
+    color: '#fff',
+  },
   inputStyleActive: {
     top: 10,
     width: currWidth * 0.865,

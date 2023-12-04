@@ -19,20 +19,21 @@ const styles = StyleSheet.create({
   },
   locCard: {
     flex: 3,
-    paddingHorizontal: scale(10),
+    paddingHorizontal: scale(5),
     height: scale(30),
     alignItems: 'flex-start',
     justifyContent: 'flex-end',
     flexDirection: 'row',
-    overflow: 'hidden',
   },
   curLocation: {
     justifyContent: 'flex-end',
     paddingHorizontal: scale(2),
     alignItems: 'flex-end',
-    textAlign: 'right',
-    width: '100%',
+    width: '90%',
     overflow: 'hidden',
+  },
+  curLocationText: {
+    textAlign: 'right',
     color: '#fff',
   },
 });

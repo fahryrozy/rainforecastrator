@@ -14,5 +14,9 @@ export const styles = StyleSheet.create({
   label: {
     fontWeight: '900',
     fontSize: 18,
+    color: '#fff',
+  },
+  locList: {
+    color: '#fff',
   },
 });

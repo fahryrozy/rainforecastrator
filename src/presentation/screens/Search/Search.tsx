@@ -13,7 +13,6 @@ const Search = () => {
     fetchedLocation,
     handleSearch,
     selectLocation,
-    reselectLocation,
     recentSearch,
   } = useViewModel();
 
@@ -26,7 +25,7 @@ const Search = () => {
         ) : (
           <RecentSearch
             data={recentSearch.locationList}
-            onSelect={reselectLocation}
+            onSelect={selectLocation}
           />
         )}
       </View>

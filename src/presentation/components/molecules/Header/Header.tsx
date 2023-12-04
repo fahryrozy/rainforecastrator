@@ -50,7 +50,7 @@ const Header: React.FC<Props> = ({
             <Text
               ellipsizeMode="tail"
               numberOfLines={1}
-              style={styles.curLocation}>{`${
+              style={styles.curLocationText}>{`${
               loc.region === '' ? '' : loc.region + ','
             } ${loc.country === '' ? '' : loc.country + ''}`}</Text>
           </View>

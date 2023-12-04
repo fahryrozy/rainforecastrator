@@ -21,7 +21,7 @@ const RecentSearch: React.FC<Props> = ({data, onSelect}) => {
                 <TouchableOpacity
                   onPress={() => onSelect(item)}
                   style={styles.itemList}>
-                  <Text>
+                  <Text style={styles.locList}>
                     {item.name !== '' ? item.name + ', ' : ''}
                     {item.region !== '' ? item.region + ', ' : ''}
                     {item.country !== '' ? item.country : ''}

@@ -25,10 +25,10 @@ export const SetLocationSlice = createSlice({
   initialState,
   reducers: {
     saveSearchedLocation: (state, action: PayloadAction<LocationState>) => {
-      state.locationList = [
-        action.payload.selectedLocation,
-        ...state.locationList,
-      ];
+      const filtered = state.locationList.filter(
+        item => item.id !== action.payload.selectedLocation.id,
+      );
+      state.locationList = [action.payload.selectedLocation, ...filtered];
     },
     setLocation: (state, action: PayloadAction<LocationState>) => {
       state.selectedLocation = action.payload.selectedLocation;

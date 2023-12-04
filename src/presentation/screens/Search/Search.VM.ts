@@ -37,16 +37,11 @@ const SearchVM = () => {
     navigation.goBack();
   };
 
-  const reselectLocation = (location: LocationSearch) => {
-    dispatch(setLocation({locationList: [], selectedLocation: location}));
-    navigation.goBack();
-  };
   return {
     qLocation,
     fetchedLocation,
     handleSearch,
     selectLocation,
-    reselectLocation,
     recentSearch,
   };
 };

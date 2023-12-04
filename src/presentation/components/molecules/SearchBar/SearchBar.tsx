@@ -13,6 +13,7 @@ const SearchBar: React.FC<Props> = ({qLocation, handleSearch}) => {
       <View style={styles.inputStyle}>
         <View>
           <TextInput
+            style={styles.textValue}
             placeholder="Search for a city or airport"
             onChangeText={handleSearch}
             value={qLocation}
