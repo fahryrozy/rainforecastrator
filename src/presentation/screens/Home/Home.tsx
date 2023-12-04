@@ -49,7 +49,7 @@ const Home = () => {
               condition={selectedCondition}
             />
           )}
-          <AstronomyCard data={astronomy} isLoading={loading} />
+          {astronomy && <AstronomyCard data={astronomy} isLoading={loading} />}
           <Forecast
             isToday={isToday}
             isLoading={loading}

@@ -29,8 +29,8 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
   const {current} = data;
   const bg =
     current?.is_day !== 1
-      ? require('../assets/images/bg-night.jpg')
-      : require('../assets/images/bg-day.jpg');
+      ? require('assets/images/bg-night.jpg')
+      : require('assets/images/bg-day.jpg');
   return (
     <View style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" />

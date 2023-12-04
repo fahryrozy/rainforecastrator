@@ -24,5 +24,4 @@ export interface CurrentAPI {
   uv: number;
   gust_mph: number;
   gust_kph: number;
-  air_quality: {[key: string]: number};
 }

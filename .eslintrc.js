@@ -21,4 +21,5 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: ['**/__test__/**'],
 };

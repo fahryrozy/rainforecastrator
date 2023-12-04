@@ -8,10 +8,12 @@ import {Current, Location} from '@domain/entities';
 import * as Sentry from '@sentry/react';
 
 type Props = {
-  data: {
-    location: Location;
-    current: Current;
-  };
+  data:
+    | {
+        location: Location;
+        current: Current;
+      }
+    | undefined;
   isLoading: boolean;
 };
 
@@ -31,7 +33,11 @@ const WeatherInfo: React.FC<Props> = ({data, isLoading}) => {
       {data && (
         <View style={styles.weatherInfoCard}>
           <View style={styles.locCard}>
-            <Text ellipsizeMode="tail" numberOfLines={1} style={styles.locText}>
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={styles.locText}
+              testID="wi-locInfo">
               {data?.location?.name}
             </Text>
             <View style={styles.locTimeCard}>
@@ -57,11 +63,12 @@ const WeatherInfo: React.FC<Props> = ({data, isLoading}) => {
                 source={{
                   uri: `https:${data?.current?.condition?.icon}`,
                 }}
+                testID="wi-weatherImage"
               />
               <Text style={styles.tempText}>{`${data?.current?.temp_c}°`}</Text>
             </View>
 
-            <Text style={styles.tempInfoText}>
+            <Text style={styles.tempInfoText} testID="wi-tempInfo">
               {data?.current?.condition?.text}
             </Text>
 

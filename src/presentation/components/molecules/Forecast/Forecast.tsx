@@ -26,14 +26,17 @@ const RenderedCard: React.FC<ItemProps> = ({
       </View>
     ) : (
       <TouchableOpacity style={styles.renderedCard} onPress={onPress}>
-        <Text style={styles.tempText}>{`${hourly_forecast.temp_c}°`}</Text>
+        <Text
+          style={styles.tempText}
+          testID="fc-temp">{`${hourly_forecast.temp_c}°`}</Text>
         <Image
           source={{uri: `https:${hourly_forecast.condition.icon}`}}
           style={styles.icon}
+          testID="fc-img"
         />
-        <Text style={styles.timeText}>{`${moment(hourly_forecast.time).format(
-          'h A',
-        )}`}</Text>
+        <Text style={styles.timeText} testID="fc-time">{`${moment(
+          hourly_forecast.time,
+        ).format('h A')}`}</Text>
       </TouchableOpacity>
     )}
   </>
