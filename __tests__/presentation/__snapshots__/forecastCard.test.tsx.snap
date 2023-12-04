@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Forecast Card in Homescreen view which used to see forecasting data match snapshot 1`] = `
+<View
+  style={
+    {
+      "borderRadius": 20,
+      "marginVertical": 10,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#222",
+        "borderTopLeftRadius": 20,
+        "borderTopRightRadius": 20,
+        "display": "flex",
+        "flexDirection": "row",
+        "height": 90,
+        "marginVertical": 2,
+        "opacity": 0.6,
+        "paddingHorizontal": 30,
+        "paddingVertical": 10,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#fff",
+          "fontFamily": "Quicksand-Bold",
+          "fontSize": 36,
+        }
+      }
+    >
+      Today's hourly forecast
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "backgroundColor": "#222",
+        "borderBottomLeftRadius": 20,
+        "borderBottomRadius": 20,
+        "borderBottomRightRadius": 20,
+        "flexDirection": "row",
+        "height": 290,
+        "opacity": 0.6,
+        "paddingHorizontal": 20,
+      }
+    }
+  >
+    <RCTScrollView
+      data={[]}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={true}
+      keyExtractor={[Function]}
+      onContentSizeChange={[Function]}
+      onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={[]}
+      viewabilityConfigCallbackPairs={[]}
+    >
+      <View />
+    </RCTScrollView>
+  </View>
+</View>
+`;

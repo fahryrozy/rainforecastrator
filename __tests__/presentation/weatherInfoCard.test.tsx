@@ -38,7 +38,7 @@ describe('Weather Info Card in Homescreen', () => {
 
   it('has temp information', () => {
     render(<WeatherInfo data={mockData_weatherInfo} isLoading={false} />);
-    const titleText = screen.getByTestId('wi-tempInfo--');
+    const titleText = screen.getByTestId('wi-tempInfo');
     expect(titleText).toBeOnTheScreen();
   });
 

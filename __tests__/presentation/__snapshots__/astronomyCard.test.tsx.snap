@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Weather Info Card in Homescreen match snapshot 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "borderRadius": 20,
+      "flexDirection": "row",
+      "height": 160,
+      "justifyContent": "center",
+      "marginVertical": 5,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "overflow": "hidden",
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "rgba(255, 255, 255, 1)",
+          "fontFamily": "Poppins",
+          "fontSize": 30,
+          "fontWeight": "400",
+          "textAlign": "center",
+        }
+      }
+    >
+      Sunrise
+    </Text>
+    <Text
+      style={
+        {
+          "color": "rgba(255, 255, 255, 1)",
+          "fontFamily": "Poppins",
+          "fontSize": 30,
+          "fontWeight": "400",
+          "textAlign": "center",
+        }
+      }
+    >
+      05:29 AM
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "overflow": "hidden",
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "rgba(255, 255, 255, 1)",
+          "fontFamily": "Poppins",
+          "fontSize": 30,
+          "fontWeight": "400",
+          "textAlign": "center",
+        }
+      }
+      testID="as-title"
+    >
+      Sunset
+    </Text>
+    <Text
+      style={
+        {
+          "color": "rgba(255, 255, 255, 1)",
+          "fontFamily": "Poppins",
+          "fontSize": 30,
+          "fontWeight": "400",
+          "textAlign": "center",
+        }
+      }
+    >
+      05:57 PM
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "overflow": "hidden",
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "rgba(255, 255, 255, 1)",
+          "fontFamily": "Poppins",
+          "fontSize": 30,
+          "fontWeight": "400",
+          "textAlign": "center",
+        }
+      }
+    >
+      Moonrise
+    </Text>
+    <Text
+      style={
+        {
+          "color": "rgba(255, 255, 255, 1)",
+          "fontFamily": "Poppins",
+          "fontSize": 30,
+          "fontWeight": "400",
+          "textAlign": "center",
+        }
+      }
+      testID="as-time"
+    >
+      11:44 PM
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "overflow": "hidden",
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "rgba(255, 255, 255, 1)",
+          "fontFamily": "Poppins",
+          "fontSize": 30,
+          "fontWeight": "400",
+          "textAlign": "center",
+        }
+      }
+    >
+      Moonset
+    </Text>
+    <Text
+      style={
+        {
+          "color": "rgba(255, 255, 255, 1)",
+          "fontFamily": "Poppins",
+          "fontSize": 30,
+          "fontWeight": "400",
+          "textAlign": "center",
+        }
+      }
+    >
+      11:09 AM
+    </Text>
+  </View>
+</View>
+`;
