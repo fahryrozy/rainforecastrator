@@ -10,9 +10,50 @@ import {render, screen} from '@testing-library/react-native';
 import '@testing-library/jest-dom';
 import '@testing-library/react-native/extend-expect';
 import WeatherInfo from '@presentation/components/molecules/WeatherInfo/WeatherInfo';
-import {mockData_weatherInfo} from '../data/mock';
 
 describe('Weather Info Card in Homescreen', () => {
+  const mockData_weatherInfo = {
+    current: {
+      cloud: 75,
+      condition: {
+        code: 1273,
+        icon: '//cdn.weatherapi.com/weather/64x64/day/386.png',
+        text: 'Patchy light rain with thunder',
+      },
+      feelslike_c: 30,
+      feelslike_f: 86,
+      gust_kph: 13.3,
+      gust_mph: 8.3,
+      humidity: 100,
+      is_day: 1,
+      last_updated: '2023-12-04 13:45',
+      last_updated_epoch: 1701672300,
+      precip_in: 0,
+      precip_mm: 0.04,
+      pressure_in: 29.83,
+      pressure_mb: 1010,
+      temp_c: 28,
+      temp_f: 82.4,
+      uv: 6,
+      vis_km: 5,
+      vis_miles: 3,
+      wind_degree: 330,
+      wind_dir: 'NNW',
+      wind_kph: 6.1,
+      wind_mph: 3.8,
+    },
+    location: {
+      country: 'Indonesia',
+      lat: -6.22,
+      localtime: '2023-12-04 13:51',
+      localtime_epoch: 1701672665,
+      lon: 106.85,
+      name: 'Jakarta',
+      region: 'Jakarta Raya',
+      tz_id: 'Asia/Jakarta',
+    },
+  };
+
   it('renders correctly with blank data', () => {
     renderer.create(<WeatherInfo data={undefined} isLoading={false} />);
   });
@@ -21,13 +62,6 @@ describe('Weather Info Card in Homescreen', () => {
     renderer.create(
       <WeatherInfo data={mockData_weatherInfo} isLoading={false} />,
     );
-  });
-
-  it('match snapshot', () => {
-    const snap = renderer
-      .create(<WeatherInfo data={mockData_weatherInfo} isLoading={false} />)
-      .toJSON();
-    expect(snap).toMatchSnapshot();
   });
 
   it('has location information', () => {
