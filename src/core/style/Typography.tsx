@@ -8,15 +8,18 @@ export const Typhography = {
     fontSize: scale(60),
     fontFamily: FONTS.quickSandBold,
     fontWeight: '800',
+    color: Colors.pureWhite,
   }),
   headerBigDefault: (): TextStyle => ({
     fontSize: scale(30),
     fontFamily: FONTS.quickSandBold,
     fontWeight: '500',
+    color: Colors.pureWhite,
   }),
   headerHalfBigDefault: (): TextStyle => ({
     fontSize: scale(20),
     fontFamily: FONTS.quickSandBold,
+    color: Colors.pureWhite,
   }),
   headerDefault: (): TextStyle => ({
     fontSize: scale(18),
@@ -26,6 +29,7 @@ export const Typhography = {
   bodyBold: (): TextStyle => ({
     fontSize: scale(12),
     fontFamily: FONTS.quickSandBold,
+    color: Colors.pureWhite,
   }),
   bodyDefault: (): TextStyle => ({
     fontSize: scale(12),

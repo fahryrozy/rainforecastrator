@@ -11,7 +11,14 @@ Rain Forecastrator is a React Native mobile application that allows users to mon
 
 ## Screenshots
 
-Include screenshots or GIFs showcasing your app's interface and features.
+<img src="https://firebasestorage.googleapis.com/v0/b/myportfolio-frs.appspot.com/o/rainforecastrator%2Fhome-day.png?alt=media&token=f832a477-47e9-4723-b641-a6710395542c" width="auto" height="350px"/>
+<img src="https://firebasestorage.googleapis.com/v0/b/myportfolio-frs.appspot.com/o/rainforecastrator%2Fhome-night.png?alt=media&token=deb9598c-aef3-4ffe-8fbf-ac6c7209b41a" width="auto" height="350px"/>
+<img src="https://firebasestorage.googleapis.com/v0/b/myportfolio-frs.appspot.com/o/rainforecastrator%2Fsearch-query.png?alt=media&token=cf5cb9fe-fdf4-4f58-aa07-00219065e0b2" width="auto" height="350px"/>
+<img src="https://firebasestorage.googleapis.com/v0/b/myportfolio-frs.appspot.com/o/rainforecastrator%2Fsearch-page.png?alt=media&token=fda160cc-a9d9-4e62-942a-e10cd5c26f4d" width="auto" height="350px"/>
+
+## Demo
+
+You can download the [demo apk here](https://drive.google.com/file/d/1ijDuD43koG_zIFAdvwzKlEeM7FNS6uob/view?usp=sharing)
 
 ## Prerequisites
 
