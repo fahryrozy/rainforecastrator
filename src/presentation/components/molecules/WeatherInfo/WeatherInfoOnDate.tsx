@@ -27,7 +27,7 @@ const WeatherInfoOnDate: React.FC<Props> = ({data, condition, isLoading}) => {
     return <ActivityIndicator size="large" color={Colors.pureWhite} />;
   }
   return (
-    <View style={Wrapper.ContainerColumn()}>
+    <View style={[styles.weatherContainer, Wrapper.ContainerColumn()]}>
       {data && condition && (
         <View style={styles.weatherInfoCard}>
           <View style={styles.locCard}>

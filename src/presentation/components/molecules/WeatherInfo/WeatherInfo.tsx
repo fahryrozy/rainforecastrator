@@ -22,10 +22,16 @@ type Props = {
 const WeatherInfo: React.FC<Props> = ({data, isLoading}) => {
   moment.locale('id');
   if (isLoading) {
-    return <ActivityIndicator size="large" color={Colors.pureWhite} />;
+    return (
+      <ActivityIndicator
+        size="large"
+        color={Colors.pureWhite}
+        style={[styles.weatherContainer, Wrapper.ContainerColumn()]}
+      />
+    );
   }
   return (
-    <View style={Wrapper.ContainerColumn()}>
+    <View style={[styles.weatherContainer, Wrapper.ContainerColumn()]}>
       {data && (
         <View style={styles.weatherInfoCard}>
           <View style={styles.locCard}>

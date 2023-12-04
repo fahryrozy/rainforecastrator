@@ -2,6 +2,10 @@ import {Colors, scale} from '@core/style';
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
+  weatherContainer: {
+    minHeight: scale(200),
+    marginVertical: 5,
+  },
   weatherInfoCard: {
     flex: 1,
     justifyContent: 'flex-start',
