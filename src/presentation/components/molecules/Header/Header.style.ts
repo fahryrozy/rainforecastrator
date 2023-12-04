@@ -2,9 +2,6 @@ import {scale} from '@core/style';
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  headerContainer: {
-    flexDirection: 'row',
-  },
   dateCard: {
     flex: 2,
     height: scale(30),
@@ -13,9 +10,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     overflow: 'hidden',
     gap: scale(2),
-  },
-  dateText: {
-    color: '#fff',
   },
   locCard: {
     flex: 3,
@@ -31,10 +25,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     width: '90%',
     overflow: 'hidden',
-  },
-  curLocationText: {
-    textAlign: 'right',
-    color: '#fff',
   },
 });
 export default styles;

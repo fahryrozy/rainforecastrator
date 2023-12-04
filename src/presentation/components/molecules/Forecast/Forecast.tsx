@@ -10,7 +10,9 @@ import React from 'react';
 import moment from 'moment';
 import {styles} from './Forecast.style';
 import {Hour} from '@domain/entities';
-import {Typhography} from '@core/style';
+import {Colors, Typhography} from '@core/style';
+import {Wrapper} from '@core/style/Wrapper';
+import IconStyle from '@core/style/Icon';
 
 type ItemProps = {hourly_forecast: Hour; onPress: any; isLoading: boolean};
 
@@ -22,19 +24,19 @@ const RenderedCard: React.FC<ItemProps> = ({
   <>
     {isLoading ? (
       <View style={styles.renderedCard}>
-        <ActivityIndicator size="small" color="#fff" />
+        <ActivityIndicator size="small" color={Colors.pureWhite} />
       </View>
     ) : (
       <TouchableOpacity style={styles.renderedCard} onPress={onPress}>
         <Text
-          style={styles.tempText}
+          style={Typhography.bodyDefault()}
           testID="fc-temp">{`${hourly_forecast.temp_c}°`}</Text>
         <Image
           source={{uri: `https:${hourly_forecast.condition.icon}`}}
-          style={styles.icon}
+          style={IconStyle.iconMedium}
           testID="fc-img"
         />
-        <Text style={styles.timeText} testID="fc-time">{`${moment(
+        <Text style={[Typhography.bodyDefault()]} testID="fc-time">{`${moment(
           hourly_forecast.time,
         ).format('h A')}`}</Text>
       </TouchableOpacity>
@@ -59,7 +61,7 @@ const Forecast: React.FC<Props> = ({
 }) => {
   moment.locale('en');
   return (
-    <View style={styles.forecastCard}>
+    <View style={Wrapper.ContainerColumn()}>
       <View style={styles.title}>
         {isToday ? (
           <Text style={Typhography.headerDefault()}>

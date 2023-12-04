@@ -1,4 +1,4 @@
-import {currHeight, currWidth} from '@core/style';
+import {Colors, currHeight, currWidth} from '@core/style';
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#333',
   },
   textValue: {
-    color: '#fff',
+    color: Colors.pureWhite,
   },
   inputStyleActive: {
     top: 10,
@@ -40,6 +40,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 2,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.pureWhite,
   },
 });

@@ -1,11 +1,7 @@
-import {scale} from '@core/style';
+import {Colors, scale} from '@core/style';
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  mainContainer: {
-    height: scale(200),
-    marginVertical: 5,
-  },
   weatherInfoCard: {
     flex: 1,
     justifyContent: 'flex-start',
@@ -22,12 +18,6 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
     gap: scale(10),
   },
-  icon: {
-    width: scale(75),
-    height: scale(75),
-  },
-  info: {flex: 1, alignItems: 'flex-start', padding: scale(2)},
-  dateCard: {flexDirection: 'row'},
   locCard: {
     flex: 0.35,
     rowGap: scale(2),
@@ -42,15 +32,8 @@ export const styles = StyleSheet.create({
     paddingVertical: scale(2),
     justifyContent: 'flex-end',
     alignItems: 'center',
-    color: 'rgba(255, 255, 255, 1)',
     width: '100%',
     overflow: 'hidden',
-  },
-  tempText: {
-    textAlign: 'center',
-    color: 'rgba(255, 255, 255, 1)',
-    fontFamily: 'Poppins',
-    fontSize: scale(65),
   },
   locTimeCard: {
     flexDirection: 'row',
@@ -62,45 +45,8 @@ export const styles = StyleSheet.create({
   locTime: {
     textAlign: 'center',
     fontSize: scale(10),
-    color: 'rgba(255, 255, 255, 1)',
+    color: Colors.pureWhite,
     fontFamily: 'Poppins',
-    fontWeight: '400',
-  },
-  lastUpdDate: {
-    flex: 1,
-    textAlign: 'center',
-    fontSize: scale(10),
-    color: 'rgba(255, 255, 255, 1)',
-    fontFamily: 'Poppins',
-    fontWeight: '400',
-  },
-  tempInfoText: {
-    textAlign: 'center',
-    color: 'rgba(255, 255, 255, 1)',
-    fontFamily: 'Poppins',
-    fontSize: scale(20),
-    alignItems: 'flex-start',
-  },
-  locDate: {
-    textAlign: 'left',
-    paddingHorizontal: scale(5),
-    color: 'rgba(255, 255, 255, 1)',
-    fontFamily: 'Poppins',
-    fontWeight: '400',
-  },
-  locText: {
-    textAlign: 'center',
-    color: 'rgba(255, 255, 255, 1)',
-    fontFamily: 'Poppins',
-    fontSize: scale(34),
-    fontWeight: '400',
-    width: '100%',
-  },
-  minMaxText: {
-    textAlign: 'center',
-    color: 'rgba(255, 255, 255, 1)',
-    fontFamily: 'Poppins',
-    fontSize: scale(20),
     fontWeight: '400',
   },
 });

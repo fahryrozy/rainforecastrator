@@ -1,9 +1,9 @@
-import {scale} from '@core/style';
+import {Colors, scale} from '@core/style';
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   itemList: {
-    borderBottomColor: '#ccc',
+    borderBottomColor: Colors.paleWhite,
     borderBottomWidth: 1,
     paddingVertical: 10,
     minHeight: scale(50),
@@ -11,6 +11,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   locList: {
-    color: '#fff',
+    color: Colors.pureWhite,
   },
 });

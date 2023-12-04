@@ -1,6 +1,7 @@
 import React from 'react';
 import LottieView from 'lottie-react-native';
 import {StyleSheet} from 'react-native';
+import {Colors} from '@core/style';
 
 const OfflineScreen = () => {
   return (
@@ -16,5 +17,5 @@ const OfflineScreen = () => {
 export default OfflineScreen;
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#fff'},
+  container: {flex: 1, backgroundColor: Colors.pureWhite},
 });

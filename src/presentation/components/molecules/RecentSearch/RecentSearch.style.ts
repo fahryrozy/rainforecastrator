@@ -1,10 +1,10 @@
-import {scale} from '@core/style';
+import {Colors, scale} from '@core/style';
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {flex: 1},
   itemList: {
-    borderBottomColor: '#ccc',
+    borderBottomColor: Colors.pureWhite,
     borderBottomWidth: 1,
     paddingVertical: 10,
     minHeight: scale(50),
@@ -14,9 +14,9 @@ export const styles = StyleSheet.create({
   label: {
     fontWeight: '900',
     fontSize: 18,
-    color: '#fff',
+    color: Colors.pureWhite,
   },
   locList: {
-    color: '#fff',
+    color: Colors.pureWhite,
   },
 });

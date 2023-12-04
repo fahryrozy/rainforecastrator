@@ -2,6 +2,8 @@ import {View, Text, ActivityIndicator} from 'react-native';
 import React from 'react';
 import {styles} from './Astronomy.styles';
 import {Astronomy, Location} from '@domain/entities';
+import {Colors, Typhography} from '@core/style';
+import {Wrapper} from '@core/style/Wrapper';
 
 type Props = {
   data: {
@@ -13,41 +15,47 @@ type Props = {
 
 const AstronomyCard: React.FC<Props> = ({data, isLoading}) => {
   return (
-    <View style={styles.containerAstro}>
+    <View style={[styles.containerAstro, Wrapper.ContainerRow()]}>
       <View style={styles.astroCard}>
-        <Text style={styles.locText}>Sunrise</Text>
+        <Text style={Typhography.captionDefault()}>Sunrise</Text>
         {isLoading ? (
-          <ActivityIndicator size="small" color="#fff" />
+          <ActivityIndicator size="small" color={Colors.pureWhite} />
         ) : (
-          <Text style={styles.locText}>{data?.astronomy?.astro?.sunrise}</Text>
+          <Text style={Typhography.bodyDefault()}>
+            {data?.astronomy?.astro?.sunrise}
+          </Text>
         )}
       </View>
       <View style={styles.astroCard}>
-        <Text style={styles.locText} testID="as-title">
+        <Text style={Typhography.captionDefault()} testID="as-title">
           Sunset
         </Text>
         {isLoading ? (
-          <ActivityIndicator size="small" color="#fff" />
+          <ActivityIndicator size="small" color={Colors.pureWhite} />
         ) : (
-          <Text style={styles.locText}>{data?.astronomy?.astro?.sunset}</Text>
+          <Text style={Typhography.bodyDefault()}>
+            {data?.astronomy?.astro?.sunset}
+          </Text>
         )}
       </View>
       <View style={styles.astroCard}>
-        <Text style={styles.locText}>Moonrise</Text>
+        <Text style={Typhography.captionDefault()}>Moonrise</Text>
         {isLoading ? (
-          <ActivityIndicator size="small" color="#fff" />
+          <ActivityIndicator size="small" color={Colors.pureWhite} />
         ) : (
-          <Text style={styles.locText} testID="as-time">
+          <Text style={Typhography.bodyDefault()} testID="as-time">
             {data?.astronomy?.astro?.moonrise}
           </Text>
         )}
       </View>
       <View style={styles.astroCard}>
-        <Text style={styles.locText}>Moonset</Text>
+        <Text style={Typhography.captionDefault()}>Moonset</Text>
         {isLoading ? (
-          <ActivityIndicator size="small" color="#fff" />
+          <ActivityIndicator size="small" color={Colors.pureWhite} />
         ) : (
-          <Text style={styles.locText}>{data?.astronomy?.astro?.moonset}</Text>
+          <Text style={Typhography.bodyDefault()}>
+            {data?.astronomy?.astro?.moonset}
+          </Text>
         )}
       </View>
     </View>

@@ -8,6 +8,8 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '@presentation/nav';
 import DatePicker from 'react-native-date-picker';
 import {LocationSearch} from '@domain/entities';
+import {Typhography} from '@core/style';
+import {Wrapper} from '@core/style/Wrapper';
 
 type Props = {
   loc: LocationSearch;
@@ -34,13 +36,15 @@ const Header: React.FC<Props> = ({
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   return (
-    <View style={styles.headerContainer}>
+    <View style={Wrapper.ContainerRow()}>
       <TouchableOpacity style={styles.dateCard} onPress={onClickDate}>
         <Image
           style={[iconStyle.iconSmall]}
           source={require('assets/icons/calendar.png')}
         />
-        <Text style={styles.dateText}>{`${moment(date).format('ll')}`}</Text>
+        <Text style={Typhography.captionDefault()}>{`${moment(date).format(
+          'll',
+        )}`}</Text>
       </TouchableOpacity>
       {loc && (
         <TouchableOpacity
@@ -50,7 +54,7 @@ const Header: React.FC<Props> = ({
             <Text
               ellipsizeMode="tail"
               numberOfLines={1}
-              style={styles.curLocationText}>{`${
+              style={Typhography.captionDefault()}>{`${
               loc.region === '' ? '' : loc.region + ','
             } ${loc.country === '' ? '' : loc.country + ''}`}</Text>
           </View>

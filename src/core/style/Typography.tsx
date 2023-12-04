@@ -1,11 +1,18 @@
 import {TextStyle} from 'react-native';
 import {FONTS} from './Fonts';
 import {scale} from './Scale';
+import {Colors} from './Colors';
 
 export const Typhography = {
-  headerBigDefault: (): TextStyle => ({
-    fontSize: scale(35),
+  headerExtraBigDefault: (): TextStyle => ({
+    fontSize: scale(60),
     fontFamily: FONTS.quickSandBold,
+    fontWeight: '800',
+  }),
+  headerBigDefault: (): TextStyle => ({
+    fontSize: scale(30),
+    fontFamily: FONTS.quickSandBold,
+    fontWeight: '500',
   }),
   headerHalfBigDefault: (): TextStyle => ({
     fontSize: scale(20),
@@ -14,7 +21,7 @@ export const Typhography = {
   headerDefault: (): TextStyle => ({
     fontSize: scale(18),
     fontFamily: FONTS.quickSandBold,
-    color: '#fff',
+    color: Colors.pureWhite,
   }),
   bodyBold: (): TextStyle => ({
     fontSize: scale(12),
@@ -23,11 +30,12 @@ export const Typhography = {
   bodyDefault: (): TextStyle => ({
     fontSize: scale(12),
     fontFamily: FONTS.quickSandMedium,
+    color: Colors.pureWhite,
   }),
   captionDefault: (): TextStyle => ({
     fontSize: scale(15),
     fontFamily: FONTS.quickSandMedium,
     fontWeight: '400',
-    color: '#fff',
+    color: Colors.pureWhite,
   }),
 };

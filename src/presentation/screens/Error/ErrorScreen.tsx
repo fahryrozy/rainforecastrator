@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {Colors} from '@core/style';
 
 export type Props = {error: Error; resetError: () => void};
 
@@ -32,7 +33,7 @@ const ErrorScreen: React.FC<Props> = ({error, resetError}) => {
 export default ErrorScreen;
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#fff'},
+  container: {flex: 1, backgroundColor: Colors.pureWhite},
 
   content: {
     marginHorizontal: 16,
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
   },
   error: {
     paddingVertical: 16,
-    color: '#222',
+    color: Colors.lightDark,
   },
   button: {
     backgroundColor: '#21cdce',
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   buttonText: {
-    color: '#fff',
+    color: Colors.pureWhite,
     fontWeight: '600',
     textAlign: 'center',
   },

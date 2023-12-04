@@ -2,7 +2,7 @@ import {View, Text, ActivityIndicator} from 'react-native';
 import React from 'react';
 import {styles} from './ConditionCard.style';
 import moment from 'moment';
-import {Typhography} from '@core/style';
+import {Colors, Typhography} from '@core/style';
 import {Hour} from '@domain/entities';
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 
 const Condition: React.FC<Props> = ({data, isLoading}) => {
   return (
-    <View>
+    <>
       {data && (
         <View>
           <View style={styles.astroTitle}>
@@ -26,41 +26,45 @@ const Condition: React.FC<Props> = ({data, isLoading}) => {
           </View>
           <View style={styles.astroContent}>
             <View style={styles.currentWeather}>
-              <Text style={styles.label}>Temp</Text>
+              <Text style={Typhography.captionDefault()}>Temp</Text>
               {isLoading ? (
-                <ActivityIndicator size="small" color="#fff" />
+                <ActivityIndicator size="small" color={Colors.pureWhite} />
               ) : (
-                <Text style={styles.value}>{data?.temp_c}</Text>
+                <Text style={Typhography.headerDefault()}>{data?.temp_c}</Text>
               )}
             </View>
             <View style={styles.currentWeather}>
-              <Text style={styles.label}>Wind Dir</Text>
+              <Text style={Typhography.captionDefault()}>Wind Dir</Text>
               {isLoading ? (
-                <ActivityIndicator size="small" color="#fff" />
+                <ActivityIndicator size="small" color={Colors.pureWhite} />
               ) : (
-                <Text style={styles.value}>{data?.wind_dir}</Text>
+                <Text style={Typhography.headerDefault()}>
+                  {data?.wind_dir}
+                </Text>
               )}
             </View>
             <View style={styles.currentWeather}>
-              <Text style={styles.label}>Humidity</Text>
+              <Text style={Typhography.captionDefault()}>Humidity</Text>
               {isLoading ? (
-                <ActivityIndicator size="small" color="#fff" />
+                <ActivityIndicator size="small" color={Colors.pureWhite} />
               ) : (
-                <Text style={styles.value}>{data?.humidity}</Text>
+                <Text style={Typhography.headerDefault()}>
+                  {data?.humidity}
+                </Text>
               )}
             </View>
             <View style={styles.currentWeather}>
-              <Text style={styles.label}>Moonrise</Text>
+              <Text style={Typhography.captionDefault()}>Moonrise</Text>
               {isLoading ? (
-                <ActivityIndicator size="small" color="#fff" />
+                <ActivityIndicator size="small" color={Colors.pureWhite} />
               ) : (
-                <Text style={styles.value}>{data.humidity}</Text>
+                <Text style={Typhography.headerDefault()}>{data.humidity}</Text>
               )}
             </View>
           </View>
         </View>
       )}
-    </View>
+    </>
   );
 };
 

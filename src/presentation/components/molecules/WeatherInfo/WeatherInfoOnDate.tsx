@@ -5,6 +5,9 @@ import 'moment/locale/id';
 import {styles} from './CurrentWeather.styles';
 import Clock from 'react-live-clock';
 import {Forecast, Hour, Location} from '@domain/entities';
+import {Colors, Typhography} from '@core/style';
+import {Wrapper} from '@core/style/Wrapper';
+import IconStyle from '@core/style/Icon';
 
 type Props = {
   data:
@@ -21,24 +24,21 @@ const WeatherInfoOnDate: React.FC<Props> = ({data, condition, isLoading}) => {
   moment.locale('en');
 
   if (isLoading) {
-    return (
-      <ActivityIndicator
-        size="large"
-        color="#fff"
-        style={styles.mainContainer}
-      />
-    );
+    return <ActivityIndicator size="large" color={Colors.pureWhite} />;
   }
   return (
-    <View style={styles.mainContainer}>
+    <View style={Wrapper.ContainerColumn()}>
       {data && condition && (
         <View style={styles.weatherInfoCard}>
           <View style={styles.locCard}>
-            <Text ellipsizeMode="tail" numberOfLines={1} style={styles.locText}>
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={Typhography.headerBigDefault()}>
               {data?.location?.name}
             </Text>
             <View style={styles.locTimeCard}>
-              <Text style={styles.locTime}>Local time : </Text>
+              <Text style={Typhography.bodyDefault()}>Local time : </Text>
               {data?.location?.tz_id ? (
                 <Clock
                   style={styles.locTime}
@@ -48,7 +48,7 @@ const WeatherInfoOnDate: React.FC<Props> = ({data, condition, isLoading}) => {
                   timezone={data.location.tz_id}
                 />
               ) : (
-                <Text>N/A</Text>
+                <Text style={Typhography.bodyDefault()}>N/A</Text>
               )}
             </View>
           </View>
@@ -56,19 +56,20 @@ const WeatherInfoOnDate: React.FC<Props> = ({data, condition, isLoading}) => {
           <View style={styles.tempCard}>
             <View style={styles.iconContainer}>
               <Image
-                style={styles.icon}
+                style={IconStyle.iconBig}
                 source={{
                   uri: `https:${condition.condition?.icon}`,
                 }}
               />
-              <Text style={styles.tempText}>{`${condition.temp_c}°`}</Text>
+              <Text
+                style={Typhography.headerExtraBigDefault()}>{`${condition.temp_c}°`}</Text>
             </View>
 
-            <Text style={styles.tempInfoText}>
+            <Text style={Typhography.headerHalfBigDefault()}>
               {data?.forecast.forecastday[0]?.hour[0]?.condition?.text}
             </Text>
 
-            <Text style={styles.lastUpdDate}>{`${moment(
+            <Text style={Typhography.bodyBold()}>{`${moment(
               condition.time,
               'YYYY-MM-DD H:m',
             ).format('llll')}`}</Text>
