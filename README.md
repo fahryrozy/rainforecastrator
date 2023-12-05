@@ -18,7 +18,7 @@ Rain Forecastrator is a React Native mobile application that allows users to mon
 
 ## Demo
 
-You can download the [demo apk here](https://drive.google.com/file/d/1ijDuD43koG_zIFAdvwzKlEeM7FNS6uob/view?usp=sharing)
+You can download the [demo apk here](https://drive.google.com/file/d/1sKHUmWTSMamAF0N69iONcMdaztiAcNWp/view?usp=sharing)
 
 ## Prerequisites
 

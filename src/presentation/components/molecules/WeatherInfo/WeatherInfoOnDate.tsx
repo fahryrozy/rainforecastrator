@@ -24,7 +24,13 @@ const WeatherInfoOnDate: React.FC<Props> = ({data, condition, isLoading}) => {
   moment.locale('en');
 
   if (isLoading) {
-    return <ActivityIndicator size="large" color={Colors.pureWhite} />;
+    return (
+      <ActivityIndicator
+        size="large"
+        color={Colors.pureWhite}
+        style={[styles.weatherContainer, Wrapper.ContainerColumn()]}
+      />
+    );
   }
   return (
     <View style={[styles.weatherContainer, Wrapper.ContainerColumn()]}>
