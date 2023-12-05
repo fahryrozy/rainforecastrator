@@ -5,16 +5,13 @@ Rain Forecastrator is a React Native mobile application that allows users to mon
 ## Features
 
 - **Current Weather:** View real-time weather conditions at your location.
-- **Forecast:** Get a detailed weather forecast for the upcoming days.
-- **Location-based:** Automatically fetch weather information based on the user's location.
+- **Forecast:** Get a detailed weather forecast for the current and past days.
+- **Location-based:** Fetch weather information based on the user's input location.
 - **Custom Locations:** Search and add custom locations to check weather conditions for different places.
 
 ## Screenshots
 
-<img src="https://firebasestorage.googleapis.com/v0/b/myportfolio-frs.appspot.com/o/rainforecastrator%2Fhome-day.png?alt=media&token=f832a477-47e9-4723-b641-a6710395542c" width="auto" height="350px"/>
-<img src="https://firebasestorage.googleapis.com/v0/b/myportfolio-frs.appspot.com/o/rainforecastrator%2Fhome-night.png?alt=media&token=deb9598c-aef3-4ffe-8fbf-ac6c7209b41a" width="auto" height="350px"/>
-<img src="https://firebasestorage.googleapis.com/v0/b/myportfolio-frs.appspot.com/o/rainforecastrator%2Fsearch-query.png?alt=media&token=cf5cb9fe-fdf4-4f58-aa07-00219065e0b2" width="auto" height="350px"/>
-<img src="https://firebasestorage.googleapis.com/v0/b/myportfolio-frs.appspot.com/o/rainforecastrator%2Fsearch-page.png?alt=media&token=fda160cc-a9d9-4e62-942a-e10cd5c26f4d" width="auto" height="350px"/>
+<img src="https://firebasestorage.googleapis.com/v0/b/myportfolio-frs.appspot.com/o/rainforecastrator%2Fhome-day.png?alt=media&token=f832a477-47e9-4723-b641-a6710395542c" width="auto" height="350px"/> <img src="https://firebasestorage.googleapis.com/v0/b/myportfolio-frs.appspot.com/o/rainforecastrator%2Fhome-night.png?alt=media&token=deb9598c-aef3-4ffe-8fbf-ac6c7209b41a" width="auto" height="350px"/> <img src="https://firebasestorage.googleapis.com/v0/b/myportfolio-frs.appspot.com/o/rainforecastrator%2Fsearch-query.png?alt=media&token=cf5cb9fe-fdf4-4f58-aa07-00219065e0b2" width="auto" height="350px"/> <img src="https://firebasestorage.googleapis.com/v0/b/myportfolio-frs.appspot.com/o/rainforecastrator%2Fsearch-page.png?alt=media&token=fda160cc-a9d9-4e62-942a-e10cd5c26f4d" width="auto" height="350px"/>
 
 ## Demo
 
@@ -28,20 +25,21 @@ Before you begin, ensure you have met the following requirements:
 - npm or yarn installed
 - React Native development environment set up
 - WeatherAPI key (Sign up at [WeatherAPI](https://www.weatherapi.com) to obtain your API key)
+- Sentry DSN key (Sign up at [Sentry](https://sentry.io) to obtain your key)
 
 ## Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/rain-forecastrator.git
+   git clone https://github.com/fahryrozy/rainforecastrator.git
 
    ```
 
 2. Navigate to the project directory
 
    ```bash
-   cd RainForecastRator
+   cd rainforecastrator
 
    ```
 
